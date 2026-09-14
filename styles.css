@@ -467,9 +467,12 @@ p{ margin:0 0 18px }
 .hero-arrow--next span{ transform:translateX(-3px) rotate(135deg) }
 .hero-arrow--prev:hover span{ translate:-3px 0 }
 .hero-arrow--next:hover span{ translate:3px 0 }
-/* Auf dem Handy nur Wischen, die Pfeile bleiben unsichtbar. */
+/* Auf dem Handy kleiner und naeher am Rand, Wischen bleibt der Hauptweg. */
 @media (max-width:820px){
-  .hero-arrow{ display:none }
+  .hero-arrow{ top:calc(50% + (var(--head-h) - 102px) / 2); width:36px; height:36px; opacity:.55 }
+  .hero-arrow--prev{ left:4px }
+  .hero-arrow--next{ right:4px }
+  .hero-arrow span{ width:10px; height:10px }
 }
 
 .hero-showcase.is-paused :is(.hero-palette,.hero-drink-scene,.hero-ingredient),

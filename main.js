@@ -111,8 +111,11 @@
       var holdEnd = cycle * 0.0911111;
       var holdSpan = holdEnd - holdStart;
       var stepSpan = slot - holdSpan;
-      var stepDuration = 1250;
-      var lingerDuration = 2600;
+      /* Auf dem Handy laufen Wechsel von Hand schneller und das Getraenk
+         steht danach kuerzer, damit Wischen direkt wirkt. */
+      var compactHero = window.matchMedia("(max-width: 820px)");
+      var stepDuration = function () { return compactHero.matches ? 560 : 1250; };
+      var lingerDuration = function () { return compactHero.matches ? 1400 : 2600; };
 
       var userPaused = false;
       var outOfView = false;
@@ -167,7 +170,7 @@
           lingerTimer = window.setTimeout(function () {
             lingerTimer = 0;
             syncHero();
-          }, lingerDuration);
+          }, lingerDuration());
         }
         syncHero();
       };
@@ -201,7 +204,7 @@
             value: from,
             to: to,
             start: performance.now(),
-            duration: Math.max(260, stepDuration * Math.sqrt(Math.abs(to - from) / stepSpan))
+            duration: Math.max(200, stepDuration() * Math.sqrt(Math.abs(to - from) / stepSpan))
           };
           if (!tweenFrame) tweenFrame = window.requestAnimationFrame(heroTweenFrame);
           markHeroScene(target, true);
@@ -236,8 +239,21 @@
       });
 
       /* Wischen mit Finger, Stift oder gezogener Maus. Senkrechte Bewegungen
-         bleiben dem Scrollen ueberlassen und brechen die Geste ab. */
+         bleiben dem Scrollen ueberlassen und brechen die Geste ab.
+         Per Touch loest der Wechsel schon waehrend der Bewegung aus,
+         sobald die Richtung klar ist, nicht erst beim Loslassen. */
       var swipe = null;
+
+      var swipeStep = function (event, final) {
+        var dx = event.clientX - swipe.x;
+        var dy = event.clientY - swipe.y;
+        var touch = event.pointerType !== "mouse";
+        var distance = touch ? 24 : 40;
+        if (!final && !touch) return false;
+        if (Math.abs(dx) < distance || Math.abs(dx) <= Math.abs(dy) * (touch ? 1.1 : 1.3)) return false;
+        showHero(dx < 0 ? 1 : -1);
+        return true;
+      };
 
       hero.addEventListener("pointerdown", function (event) {
         if (event.pointerType === "mouse" && event.button !== 0) return;
@@ -245,12 +261,15 @@
         swipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
       });
 
+      hero.addEventListener("pointermove", function (event) {
+        if (!swipe || event.pointerId !== swipe.id) return;
+        if (swipeStep(event, false)) swipe = null;
+      });
+
       hero.addEventListener("pointerup", function (event) {
         if (!swipe || event.pointerId !== swipe.id) return;
-        var dx = event.clientX - swipe.x;
-        var dy = event.clientY - swipe.y;
+        swipeStep(event, true);
         swipe = null;
-        if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) * 1.3) showHero(dx < 0 ? 1 : -1);
       });
 
       hero.addEventListener("pointercancel", function () { swipe = null; });
