@@ -22,7 +22,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/karla-400-latin.woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="assets/img/hero-animation/strawberry-iced-ube-real-v2.webp">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=20260914-1">
+<link rel="stylesheet" href="styles.css?v=20260914-4">
 </head>
 <body>
 
@@ -58,7 +58,7 @@
     <p class="visually-hidden">Im Wechsel: Strawberry Iced Ube, Schoko Iced Ube, Matcha Frappé, Oreo Frappé, Caramel Mochi, Blue Lagoon, Ananas Mojito, Mango Coconut Dream und Berry Love.</p>
 
     <div class="hero-stage" data-hero-stage>
-      <div class="hero-palette hero-palette--berry" style="--hero-delay:-1.2s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--berry is-current" style="--hero-delay:-1.2s" aria-hidden="true"></div>
       <div class="hero-palette hero-palette--schoko" style="--hero-delay:4.4s" aria-hidden="true"></div>
       <div class="hero-palette hero-palette--matcha" style="--hero-delay:10s" aria-hidden="true"></div>
       <div class="hero-palette hero-palette--oreo" style="--hero-delay:15.6s" aria-hidden="true"></div>
@@ -68,7 +68,7 @@
       <div class="hero-palette hero-palette--mango" style="--hero-delay:38s" aria-hidden="true"></div>
       <div class="hero-palette hero-palette--berry-love" style="--hero-delay:43.6s" aria-hidden="true"></div>
 
-      <div class="hero-drink-scene hero-drink-scene--berry" style="--hero-delay:-1.2s" aria-hidden="true">
+      <div class="hero-drink-scene hero-drink-scene--berry is-current" style="--hero-delay:-1.2s" aria-hidden="true">
         <div class="hero-ingredients hero-ingredients--berry">
           <img class="hero-ingredient hero-ingredient--berry-whole" src="assets/img/hero-animation/strawberry.webp" alt="" width="360" height="329" decoding="async" style="--desktop-x:-118px;--desktop-y:-238px;--desktop-size:92px;--mobile-x:-20vw;--mobile-y:-22vh;--mobile-size:64px;--r:-17deg;--s:1;--lag:0s">
           <img class="hero-ingredient hero-ingredient--ube-chunks" src="assets/img/hero-animation/ube-chunks-v3.png" alt="" width="400" height="270" decoding="async" style="--desktop-x:-246px;--desktop-y:-145px;--desktop-size:120px;--mobile-x:-38vw;--mobile-y:-13vh;--mobile-size:82px;--r:11deg;--s:1;--lag:.12s">
@@ -227,6 +227,16 @@
       </div>
     </div>
 
+    <button class="hero-arrow hero-arrow--prev" type="button" data-hero-step="-1" hidden
+            aria-controls="hero-live" aria-label="Vorheriges Getränk">
+      <span aria-hidden="true"></span>
+    </button>
+    <button class="hero-arrow hero-arrow--next" type="button" data-hero-step="1" hidden
+            aria-controls="hero-live" aria-label="Nächstes Getränk">
+      <span aria-hidden="true"></span>
+    </button>
+    <p class="visually-hidden" id="hero-live" aria-live="polite" data-hero-live></p>
+
     <div class="hero-controls">
       <a class="btn btn-solid hero-cta" href="speisekarte.html">Getränke entdecken</a>
       <button class="hero-motion-toggle" type="button" data-hero-toggle hidden
@@ -290,7 +300,33 @@
     </div>
   </section>
 
-  <!-- ===== 5 · Stimmen unserer Gäste ===== -->
+  <!-- ===== 5 · Bildergalerie: Text links, drei Fotos als Mosaik ===== -->
+  <section class="gallery-section" id="einblicke" aria-labelledby="gallery-title">
+    <div class="gallery">
+      <div class="gallery-copy reveal">
+        <p class="label">Bildergalerie</p>
+        <h2 class="h-block gallery-title" id="gallery-title">Einblicke<br> ins CHAI.</h2>
+        <p>Unser Café, unsere Lieblingsdrinks und süße Momente in den Schlosshöfen Oldenburg.</p>
+        <a class="link-u link-arrow" href="https://www.instagram.com/chai.dessert.kaffee/" target="_blank" rel="noopener">Alle Impressionen entdecken</a>
+      </div>
+      <div class="gallery-mosaic">
+        <figure class="gallery-tile gallery-tile--tall reveal">
+          <img src="assets/img/galerie-laden.jpg" width="1100" height="1375"
+               alt="Teammitglied in brauner Schürze vor dem Laden CHAI Dessert &amp; Kaffee mit Theke und Barhockern" loading="lazy" decoding="async">
+        </figure>
+        <figure class="gallery-tile reveal">
+          <img src="assets/img/galerie-matcha-ube.jpg" width="900" height="1200"
+               alt="Matcha Ube Latte im CHAI Becher, grün über violett geschichtet" loading="lazy" decoding="async">
+        </figure>
+        <figure class="gallery-tile reveal">
+          <img src="assets/img/galerie-crepes.jpg" width="900" height="1200"
+               alt="Drei Crêpes von oben: zweimal Lotus Biscoff, einmal Erdbeere und Schoko" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6 · Stimmen unserer Gäste ===== -->
   <section class="reviews-section" id="bewertungen" aria-labelledby="reviews-title">
     <div class="reviews-header reviews-shell reveal">
       <div>
@@ -447,6 +483,6 @@
 }
 </script>
 
-<script src="main.js?v=20260912-1" defer></script>
+<script src="main.js?v=20260914-1" defer></script>
 </body>
 </html>

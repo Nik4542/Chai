@@ -10,8 +10,9 @@
    2  leere Flaeche, ein Foto daneben
    3  unscharfes Foto aus dem Cafe, Text darauf
    4  leere Flaeche, zwei Fotos
-   5  Stimmen der Gaeste als laufende Linie
-   6  Fusszeile in Navy
+   5  Bildergalerie, Text und drei Fotos als Mosaik
+   6  Stimmen der Gaeste als laufende Linie
+   7  Fusszeile in Navy
 
    Farben ausschliesslich aus dem Logo: Creme vom Aufkleber,
    Navy vom Teeglas, Chai-Rot vom Tee.
@@ -439,6 +440,38 @@ p{ margin:0 0 18px }
   border-left:14px solid currentColor;
 }
 .hero-motion-toggle[aria-pressed="true"] span::after{ display:none }
+/* Pfeile zum selbst Wechseln, halbtransparent auf Hoehe des Getraenks.
+   Wischen funktioniert auf der ganzen Flaeche, senkrechtes Scrollen bleibt frei. */
+.hero-showcase{ touch-action:pan-y pinch-zoom }
+.hero-stage{ -webkit-user-select:none; user-select:none }
+.hero-stage img{ -webkit-user-drag:none }
+.hero-arrow{
+  position:absolute; z-index:12; top:calc(50% + (var(--head-h) - 94px) / 2);
+  display:grid; place-items:center; width:48px; height:48px; padding:0;
+  border:0; background:none; color:#FFFFFF;
+  filter:drop-shadow(0 1px 6px rgba(12,24,24,.45));
+  opacity:.6; cursor:pointer; transform:translateY(-50%);
+  transition:opacity .18s;
+}
+.hero-arrow[hidden]{ display:none }
+.hero-arrow--prev{ left:var(--pad-x) }
+.hero-arrow--next{ right:var(--pad-x) }
+.hero-arrow:hover,
+.hero-arrow:focus-visible{ opacity:1 }
+.hero-arrow:focus-visible{ outline-color:#FFFFFF }
+.hero-arrow span{
+  width:14px; height:14px; border-top:2px solid currentColor; border-left:2px solid currentColor;
+  transition:translate .18s;
+}
+.hero-arrow--prev span{ transform:translateX(3px) rotate(-45deg) }
+.hero-arrow--next span{ transform:translateX(-3px) rotate(135deg) }
+.hero-arrow--prev:hover span{ translate:-3px 0 }
+.hero-arrow--next:hover span{ translate:3px 0 }
+/* Auf dem Handy nur Wischen, die Pfeile bleiben unsichtbar. */
+@media (max-width:820px){
+  .hero-arrow{ display:none }
+}
+
 .hero-showcase.is-paused :is(.hero-palette,.hero-drink-scene,.hero-ingredient),
 .hero-showcase.is-out-of-view :is(.hero-palette,.hero-drink-scene,.hero-ingredient){ animation-play-state:paused }
 
@@ -524,6 +557,55 @@ p{ margin:0 0 18px }
 .duo p{ font-size:1.05rem; color:var(--ink-2); max-width:40ch }
 @media (max-width:820px){ .duo{ grid-template-columns:1fr; gap:48px } }
 
+/* ---------- 5 Bildergalerie ---------- */
+/* Schliesst direkt an Karte und Standort an: eine Haarlinie trennt,
+   links der Text, rechts ein hohes Foto und zwei gestapelte. */
+.gallery-section{ padding-block:0 clamp(72px,11vw,132px) }
+.gallery{
+  display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,2fr);
+  column-gap:clamp(40px,4.4vw,64px);
+  width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad-x);
+}
+.gallery::before{
+  content:""; grid-column:1/-1; height:1px; background:var(--line);
+  margin-bottom:clamp(28px,3vw,36px);
+}
+.gallery-copy{ align-self:start; padding-top:clamp(24px,5.4vw,76px) }
+.gallery-title{ font-size:clamp(2.6rem,5.4vw,4.4rem); margin-bottom:28px }
+.gallery-copy p:not(.label){ font-size:1.1rem; color:var(--ink-2); max-width:32ch; margin-bottom:38px }
+
+.link-arrow{ display:inline-flex; align-items:center; gap:14px; border-bottom-color:var(--accent) }
+.link-arrow::after{
+  content:""; flex:none; width:22px; height:14px; background:var(--accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14'%3E%3Cpath d='M0 7h20M14 1l6 6-6 6' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14'%3E%3Cpath d='M0 7h20M14 1l6 6-6 6' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition:transform .2s;
+}
+.link-arrow:hover::after{ transform:translateX(4px) }
+
+.gallery-mosaic{
+  display:grid; grid-template-columns:minmax(0,1.28fr) minmax(0,1fr); grid-template-rows:1fr 1fr;
+  gap:clamp(12px,1.4vw,20px);
+}
+.gallery-tile{ position:relative; margin:0; overflow:hidden; background:var(--bg-warm) }
+.gallery-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+.gallery-tile--tall{ grid-column:1; grid-row:1 / span 2; aspect-ratio:27/40 }
+.gallery-tile:not(.gallery-tile--tall){ grid-column:2 }
+.gallery-tile:nth-child(2) img{ object-position:center 55% }
+.js-reveal .gallery-tile.is-in:nth-child(2){ transition-delay:.08s }
+.js-reveal .gallery-tile.is-in:nth-child(3){ transition-delay:.16s }
+
+@media (max-width:900px){
+  .gallery{ grid-template-columns:1fr }
+  .gallery-copy{ padding-top:0; margin-bottom:clamp(36px,6vw,48px) }
+  .gallery-copy p:not(.label){ max-width:44ch }
+}
+@media (max-width:560px){
+  .gallery-mosaic{ grid-template-columns:1fr 1fr; grid-template-rows:auto }
+  .gallery-tile--tall{ grid-column:1 / -1; grid-row:auto; aspect-ratio:4/5 }
+  .gallery-tile:not(.gallery-tile--tall){ grid-column:auto; aspect-ratio:1 }
+}
+
 /* ---------- 3 Farbblock ---------- */
 /* Unscharfes Foto aus dem Cafe traegt die Flaeche.
    Der Schleier ist dunkel und warm, damit das Bild sichtbar bleibt
@@ -599,7 +681,7 @@ p{ margin:0 0 18px }
   color:var(--ink-2); border:1px solid var(--line); padding:9px 18px;
 }
 
-/* ---------- 5 Google-Rezensionen ---------- */
+/* ---------- 6 Google-Rezensionen ---------- */
 .reviews-section{
   overflow:hidden; padding-block:clamp(76px,9vw,116px);
   background:var(--navy); color:var(--on-navy);
@@ -812,10 +894,10 @@ p{ margin:0 0 18px }
 @media (prefers-reduced-motion: reduce){
   .hero-palette,.hero-drink-scene,.hero-ingredient{ animation:none !important }
   .hero-palette{ opacity:0 }
-  .hero-palette--berry{ opacity:1 }
+  .hero-palette.is-current{ opacity:1 }
   .hero-drink-scene{ opacity:0; transform:translate3d(-115vw,0,0) }
-  .hero-drink-scene--berry{ opacity:1; transform:none }
-  .hero-drink-scene--berry .hero-ingredient{
+  .hero-drink-scene.is-current{ opacity:1; transform:none }
+  .hero-drink-scene.is-current .hero-ingredient{
     opacity:1; transform:translate3d(var(--x),var(--y),0) scale(var(--s)) rotate(var(--r));
   }
   .hero-motion-toggle{ display:none }
