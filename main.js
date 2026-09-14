@@ -65,30 +65,196 @@
   }
 
   /* ---- Horizontaler Getraenkewechsel im Startbild ----
-     Die eigentliche Bewegung bleibt in CSS und benoetigt keinen zweiten
-     requestAnimationFrame-Loop. Ausserhalb des sichtbaren Bereichs sowie
-     auf Wunsch des Besuchers wird sie angehalten. */
+     Die eigentliche Bewegung bleibt in CSS. Ausserhalb des sichtbaren
+     Bereichs sowie auf Wunsch des Besuchers wird sie angehalten.
+
+     Pfeile und Wischen spulen dieselbe CSS-Zeitleiste per Web Animations API
+     vor oder zurueck, es gibt also keine zweite Animation. Die Standzeit, in
+     der ein Getraenk ruhig steht, wird dabei uebersprungen. Die Richtung folgt
+     dem Finger: "Naechstes" (rechter Pfeil, nach links wischen) laesst das neue
+     Getraenk von rechts kommen, also die Zeitleiste rueckwaerts laufen. */
   var heroStage = document.querySelector("[data-hero-stage]");
   var heroMotionToggle = document.querySelector("[data-hero-toggle]");
 
   if (hero && heroStage) {
+    var heroScenes = heroStage.querySelectorAll(".hero-drink-scene");
+    var heroPalettes = heroStage.querySelectorAll(".hero-palette");
+    var heroArrows = hero.querySelectorAll("[data-hero-step]");
+    var heroLive = hero.querySelector("[data-hero-live]");
+    var sceneCount = heroScenes.length;
+    var sceneIndex = 0;
+    var showHero = null;
+
+    function markHeroScene(index, announce) {
+      sceneIndex = ((index % sceneCount) + sceneCount) % sceneCount;
+      Array.prototype.forEach.call(heroScenes, function (el, i) { el.classList.toggle("is-current", i === sceneIndex); });
+      Array.prototype.forEach.call(heroPalettes, function (el, i) { el.classList.toggle("is-current", i === sceneIndex); });
+      if (announce && heroLive) {
+        var name = heroScenes[sceneIndex].querySelector(".hero-drink-name");
+        var number = (sceneCount - sceneIndex) % sceneCount + 1;
+        heroLive.textContent = (name ? name.textContent : "") + ", " + number + " von " + sceneCount;
+      }
+    }
+
     if (reduced) {
       hero.classList.add("is-reduced-motion");
+      showHero = function (step) { markHeroScene(sceneIndex - step, true); };
     } else {
+      var CYCLE_ANIMATIONS = { "hero-palette-cycle": true, "hero-product-sweep": true, "hero-ingredient-burst": true };
+      var cycle = parseFloat(window.getComputedStyle(hero).getPropertyValue("--hero-cycle")) || 50.4;
+      var slot = cycle / sceneCount;
+      var firstDelay = parseFloat(heroScenes[0].style.getPropertyValue("--hero-delay")) || 0;
+      /* Ruhefenster einer Szene in Sekunden, aus den Keyframes abgeleitet:
+         alle Zutaten stehen ab 3,11 % plus hoechstens 0,2 s Versatz,
+         die ersten fliegen ab 9,11 % wieder weg. */
+      var holdStart = cycle * 0.0311111 + 0.21;
+      var holdEnd = cycle * 0.0911111;
+      var holdSpan = holdEnd - holdStart;
+      var stepSpan = slot - holdSpan;
+      var stepDuration = 1250;
+      var lingerDuration = 2600;
+
+      var userPaused = false;
+      var outOfView = false;
+      var tween = null;
+      var tweenFrame = 0;
+      var lingerTimer = 0;
+
+      var cycleAnimations = function () {
+        return heroStage.getAnimations({ subtree: true }).filter(function (a) {
+          return CYCLE_ANIMATIONS[a.animationName];
+        });
+      };
+
+      /* Zeitleiste ohne Standzeiten: in jeder Szene faellt das Ruhefenster
+         auf einen Punkt zusammen, damit Wechsel gleichmaessig schnell laufen. */
+      var compactFromTime = function (t) {
+        var q = t - firstDelay;
+        var n = Math.floor(q / slot);
+        var local = q - n * slot;
+        return n * stepSpan + (local < holdStart ? local : local <= holdEnd ? holdStart : local - holdSpan);
+      };
+      var timeFromCompact = function (c) {
+        var n = Math.floor(c / stepSpan);
+        var local = c - n * stepSpan;
+        /* Kleine Toleranz: ein Rundungsfehler am Ruhepunkt darf nicht ans Ende der Standzeit springen. */
+        return firstDelay + n * slot + (local <= holdStart + 1e-4 ? local : local + holdSpan);
+      };
+
+      var syncHero = function () {
+        var run = !userPaused && !outOfView && !tween && !lingerTimer;
+        cycleAnimations().forEach(function (a) {
+          if (run) { if (a.playState !== "running") a.play(); }
+          else if (a.playState !== "paused") a.pause();
+        });
+      };
+
+      var heroTweenFrame = function (now) {
+        tweenFrame = 0;
+        if (!tween) return;
+        var k = Math.min(1, (now - tween.start) / tween.duration);
+        tween.value = tween.from + (tween.to - tween.from) * k;
+        var ms = timeFromCompact(tween.value) * 1000;
+        tween.animations.forEach(function (a) { a.currentTime = ms; });
+
+        if (k < 1) {
+          tweenFrame = window.requestAnimationFrame(heroTweenFrame);
+          return;
+        }
+        tween = null;
+        /* Nach einem Wechsel von Hand bleibt das Getraenk etwas laenger stehen. */
+        if (!userPaused) {
+          lingerTimer = window.setTimeout(function () {
+            lingerTimer = 0;
+            syncHero();
+          }, lingerDuration);
+        }
+        syncHero();
+      };
+
+      if (typeof heroStage.getAnimations === "function" && cycleAnimations().length) {
+        showHero = function (step) {
+          var animations = tween ? tween.animations : cycleAnimations();
+          if (!animations.length) return;
+
+          var from;
+          if (tween) {
+            from = tween.value;
+          } else {
+            var t = animations[0].currentTime / 1000;
+            /* Vor der dritten Runde verschieben, damit Rueckwaertslaufen nie vor
+               den Start faellt. Die Zeitleiste ist periodisch, das Bild bleibt gleich. */
+            if (t < 2 * cycle) t += 2 * cycle;
+            from = compactFromTime(t);
+          }
+
+          var base = ((tween ? tween.to : from) - holdStart) / stepSpan;
+          var target = step > 0 ? Math.ceil(base - 1e-6) - 1 : Math.floor(base + 1e-6) + 1;
+          var to = target * stepSpan + holdStart;
+
+          window.clearTimeout(lingerTimer);
+          lingerTimer = 0;
+          animations.forEach(function (a) { a.pause(); });
+          tween = {
+            animations: animations,
+            from: from,
+            value: from,
+            to: to,
+            start: performance.now(),
+            duration: Math.max(260, stepDuration * Math.sqrt(Math.abs(to - from) / stepSpan))
+          };
+          if (!tweenFrame) tweenFrame = window.requestAnimationFrame(heroTweenFrame);
+          markHeroScene(target, true);
+        };
+      }
+
       if (heroMotionToggle) {
         heroMotionToggle.hidden = false;
         heroMotionToggle.addEventListener("click", function () {
-          var paused = hero.classList.toggle("is-paused");
-          heroMotionToggle.setAttribute("aria-pressed", String(paused));
-          heroMotionToggle.setAttribute("aria-label", paused ? "Animation fortsetzen" : "Animation pausieren");
+          userPaused = hero.classList.toggle("is-paused");
+          heroMotionToggle.setAttribute("aria-pressed", String(userPaused));
+          heroMotionToggle.setAttribute("aria-label", userPaused ? "Animation fortsetzen" : "Animation pausieren");
+          if (showHero) syncHero();
         });
       }
 
       if ("IntersectionObserver" in window) {
         new IntersectionObserver(function (entries) {
-          hero.classList.toggle("is-out-of-view", !entries[0].isIntersecting);
+          outOfView = !entries[0].isIntersecting;
+          hero.classList.toggle("is-out-of-view", outOfView);
+          if (showHero) syncHero();
         }, { threshold: 0.02 }).observe(hero);
       }
+    }
+
+    if (showHero && sceneCount > 1) {
+      Array.prototype.forEach.call(heroArrows, function (arrow) {
+        arrow.hidden = false;
+        arrow.addEventListener("click", function () {
+          showHero(Number(arrow.getAttribute("data-hero-step")));
+        });
+      });
+
+      /* Wischen mit Finger, Stift oder gezogener Maus. Senkrechte Bewegungen
+         bleiben dem Scrollen ueberlassen und brechen die Geste ab. */
+      var swipe = null;
+
+      hero.addEventListener("pointerdown", function (event) {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        if (event.target.closest("a, button")) return;
+        swipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      });
+
+      hero.addEventListener("pointerup", function (event) {
+        if (!swipe || event.pointerId !== swipe.id) return;
+        var dx = event.clientX - swipe.x;
+        var dy = event.clientY - swipe.y;
+        swipe = null;
+        if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) * 1.3) showHero(dx < 0 ? 1 : -1);
+      });
+
+      hero.addEventListener("pointercancel", function () { swipe = null; });
+      hero.addEventListener("dragstart", function (event) { event.preventDefault(); });
     }
   }
 

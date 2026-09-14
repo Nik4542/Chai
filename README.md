@@ -39,8 +39,9 @@ Rundung.
 | 2 | Ube | leere Flaeche, ein Foto daneben | 1 |
 | 3 | Spendenaktion | Farbblock in Chai-Rot, ohne Bild | 0 |
 | 4 | Karte und Standort | leere Flaeche, zwei Fotos | 2 |
-| 5 | Google-Bewertungen | Navy, Rating und endlose Rezensionen-Linie | 0 |
-| 6 | Fusszeile | Navy mit Adresse, Zeiten, Kontakt | 0 |
+| 5 | Bildergalerie „Einblicke ins CHAI." | Haarlinie, Text links, Fotomosaik rechts | 3 |
+| 6 | Google-Bewertungen | Navy, Rating und endlose Rezensionen-Linie | 0 |
+| 7 | Fusszeile | Navy mit Adresse, Zeiten, Kontakt | 0 |
 
 Die Startseite ist damit kurz, so wie beim Vorbild. Die volle Karte mit 57 Positionen und
 Filter liegt auf einer eigenen Seite `speisekarte.html`, so wie dort /shop und /locations
@@ -86,6 +87,9 @@ Zutatenfreisteller ohne wiederholte Bilddatei. Quellen, Prompts und Verarbeitung
   Schaltfläche pausieren sie, Pfeiltasten bewegen sie und reduzierte Bewegung schaltet den Lauf ab
 - Vollbild-Hero mit neun automatisch wechselnden echten Getränkemotiven; die sichtbaren
   Produktsilhouetten sind trotz unterschiedlicher Ausgangsformate optisch gleich gewichtet
+- Halbtransparente Pfeile und Wischen auf dem Handy wechseln das Getränk von Hand; dabei läuft
+  dieselbe CSS-Animation vor- oder rückwärts, danach geht der automatische Wechsel weiter.
+  Bei reduzierter Bewegung wechseln die Pfeile ohne Animation
 - Kein Cookie, kein Tracking, kein eingebundener Dienst von Dritten
 - Schriften liegen auf dem eigenen Server, es geht keine IP an Google Fonts
 - Google Maps ist nur verlinkt, nicht eingebettet, also kein Consent-Banner nötig
