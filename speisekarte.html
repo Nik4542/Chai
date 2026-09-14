@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Speisekarte - CHAI Dessert und Kaffee, Oldenburg</title>
-<meta name="description" content="Die ganze Karte von CHAI Dessert und Kaffee: Ube, Frucht-Mix, Dirty Soda, Crêpes, Kaffee, Matcha und türkische Süßigkeiten mit Preisen.">
+<meta name="description" content="Die ganze Karte von CHAI Dessert und Kaffee: Ube, Mochi, Frucht-Mix, Dirty Soda, Virgin Mojitos, Crêpes, Kaffee, Matcha und türkische Süßigkeiten mit Preisen.">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#F2E8D7">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
@@ -12,7 +12,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/marcellus-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/karla-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=20260908-1">
+<link rel="stylesheet" href="styles.css?v=20260914-1">
 </head>
 <body>
 
@@ -51,8 +51,10 @@
     <div class="chips" role="group" aria-label="Speisekarte nach Kategorie filtern">
       <button class="chip" type="button" aria-pressed="true"  data-filter="alle">Alle</button>
       <button class="chip" type="button" aria-pressed="false" data-filter="ube">Ube</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="mochi">Mochi</button>
       <button class="chip" type="button" aria-pressed="false" data-filter="frucht">Frucht-Mix</button>
       <button class="chip" type="button" aria-pressed="false" data-filter="soda">Dirty Soda</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="mojito">Mojitos</button>
       <button class="chip" type="button" aria-pressed="false" data-filter="crepes">Crêpes</button>
       <button class="chip" type="button" aria-pressed="false" data-filter="kaffee">Kaffee und Matcha</button>
       <button class="chip" type="button" aria-pressed="false" data-filter="suess">Süßes</button>
@@ -75,6 +77,10 @@
       <article class="item" data-cat="ube"><div class="item-top"><h3>Matcha Ube, heiß</h3><span class="price">5,80 €</span></div><p>Warm serviert</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Hot Schoko Ube</h3><span class="price">4,90 €</span></div><p>Heiße Schokolade mit Ube</p></article>
 
+      <!-- MOCHI -->
+      <div class="cat-head" data-cat="mochi"><div><h3>Winter Mochi</h3><p>Cremige Getränkespezialitäten im 0,4 Liter Becher.</p></div></div>
+      <article class="item" data-cat="mochi"><div class="item-top"><h3>Caramel Mochi</h3><span class="price">5,25 €</span></div><p>Aus der Winter Mochi Collection</p></article>
+
       <!-- FRUCHT-MIX -->
       <figure class="item item-foto" data-cat="ube">
         <img src="assets/img/cat-ube.jpg" width="600" height="320" alt="Ube Getränk vor der Ube Menütafel im Café" loading="lazy" decoding="async">
@@ -90,6 +96,7 @@
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Avocado Spinach Smooth</h3><span class="price">5,60 €</span></div><p>Avocado, Spinat, Banane, Apfel</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Strawberry Cheesecake</h3><span class="price">4,95 €</span></div><p>Erdbeere, Vanille, Keks</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Chocolate Berry Delight</h3><span class="price">4,95 €</span></div><p>Schokolade, Beerenmix, Banane</p></article>
+      <article class="item" data-cat="frucht"><div class="item-top"><h3>Berry Love</h3><span class="price">4,95 €</span></div><p>Gefrorene Erdbeere und Kirsche</p></article>
 
       <!-- DIRTY SODA -->
       <figure class="item item-foto" data-cat="frucht">
@@ -107,6 +114,10 @@
       <article class="item" data-cat="soda"><div class="item-top"><h3>Mint Lime Cooler</h3><span class="price">5,30 €</span></div><p>Sprite, Minze, Limette, Kokoscreme</p></article>
       <article class="item" data-cat="soda"><div class="item-top"><h3>Tropical Sunset</h3><span class="price">5,45 €</span></div><p>Sprudelwasser, Mango, Erdbeere, Blue Curaçao, Kokoscreme</p></article>
       <article class="item" data-cat="soda"><div class="item-top"><h3>Dirty Mezzo Berry</h3><span class="price">5,30 €</span></div><p>Mezzo Mix, Himbeere, Blaubeere, Kokoscreme</p></article>
+
+      <!-- VIRGIN MOJITOS -->
+      <div class="cat-head" data-cat="mojito"><div><h3>Virgin Mojitos</h3><p>Alkoholfrei und frisch auf Eis zubereitet.</p></div></div>
+      <article class="item" data-cat="mojito"><div class="item-top"><h3>Ananas Mojito</h3><span class="price">4,60 €</span></div><p>Ananassaft, Minze, Limette, Soda</p></article>
 
       <!-- CRÊPES -->
       <figure class="item item-foto" data-cat="soda">
@@ -131,6 +142,8 @@
       <div class="cat-head" data-cat="kaffee"><div><h3>Kaffee und Matcha</h3><p>Hafer- und Mandelmilch möglich. Preise für die Klassiker stehen auf der Tafel im Laden.</p></div></div>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Caramel Iced Latte</h3><span class="price">4,95 €</span></div><p>Espresso, Milch, Karamell, Eis</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Pistazien Eis Latte</h3><span class="price">5,10 €</span></div><p>Espresso, Milch, Pistaziencreme</p></article>
+      <article class="item" data-cat="kaffee"><div class="item-top"><h3>Matcha Frappé</h3><span class="price">5,40 €</span></div><p>Matcha, Milch, Eis</p></article>
+      <article class="item" data-cat="kaffee"><div class="item-top"><h3>Oreo Frappé</h3><span class="price">5,30 €</span></div><p>Oreo Kekse, Milch, Vanille, Eis</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Matcha Latte</h3></div><p>Heiß oder auf Eis, auch mit Pistaziencreme</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Espresso und Americano</h3></div><p>Aus der Siebträgermaschine</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Cappuccino und Cortado</h3></div><p>Klassisch, mit Latte Art</p></article>

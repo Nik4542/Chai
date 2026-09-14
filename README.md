@@ -6,12 +6,12 @@ kein Framework. Einfach den Ordner `site/` auf den Webspace kopieren.
 ```
 site/
   index.html          Startseite, kurz: Hero, Ube, Farbblock, Karte und Standort
-  speisekarte.html    Die ganze Karte, 52 Positionen mit Filter
+  speisekarte.html    Die ganze Karte, 57 Positionen mit Filter
   impressum.html      Impressum (Platzhalter, siehe unten)
   datenschutz.html    Datenschutzerklärung (Platzhalter, siehe unten)
   styles.css          Gesamtes Design, ein einziges Token-System
   main.js             Navigation, Kartenfilter, Einblendungen, Rezensionen-Linie
-  assets/img/         16 Bilder plus Logo und Favicons, auf Webgröße gerechnet
+  assets/img/         Optimierte Fotos, Hero-Freisteller, Logo und Favicons
   assets/fonts/       Marcellus und Karla, selbst gehostet (180 KB)
 ```
 
@@ -35,14 +35,14 @@ Rundung.
 
 | # | Abschnitt | Grund | Bilder |
 |---|---|---|---|
-| 1 | Hero | Foto, ganzer Bildschirm, Text darauf | 1 |
+| 1 | Hero | Neun automatisch wechselnde Getränkeszenen | 9 Produkte plus Zutaten |
 | 2 | Ube | leere Flaeche, ein Foto daneben | 1 |
 | 3 | Spendenaktion | Farbblock in Chai-Rot, ohne Bild | 0 |
 | 4 | Karte und Standort | leere Flaeche, zwei Fotos | 2 |
 | 5 | Google-Bewertungen | Navy, Rating und endlose Rezensionen-Linie | 0 |
 | 6 | Fusszeile | Navy mit Adresse, Zeiten, Kontakt | 0 |
 
-Die Startseite ist damit kurz, so wie beim Vorbild. Die volle Karte mit 52 Positionen und
+Die Startseite ist damit kurz, so wie beim Vorbild. Die volle Karte mit 57 Positionen und
 Filter liegt auf einer eigenen Seite `speisekarte.html`, so wie dort /shop und /locations
 eigene Seiten sind.
 
@@ -53,7 +53,7 @@ Teeglas traegt Schrift und Fusszeile, Chai-Rot vom Tee ist Akzent und der eine F
 
 | Inhalt | Quelle |
 |---|---|
-| Preise Ube, Frucht-Mix, Dirty Soda, Crêpes | Menütafeln aus den Facebook-Beiträgen |
+| Preise Ube, Frappé, Mochi, Frucht-Mix, Dirty Soda, Virgin Mojitos, Crêpes | Menütafeln aus den Facebook-Beiträgen und Kundenfotos |
 | Caramel Iced Latte 4,95 €, Pistazien Eis Latte 5,10 € | Aushänge auf Fotos |
 | Markenphilosophie | Facebook-Beitrag vom 09.11.2025 |
 | „Kostenlos für Menschen in Not" | Facebook-Beitrag vom 09.11.2025 |
@@ -63,14 +63,14 @@ Teeglas traegt Schrift und Fusszeile, Chai-Rot vom Tee ist Akzent und der eine F
 | Telefon, E-Mail | Facebook-Seite |
 | Rezensionen | Google Maps, kurze sinngemäße Auszüge mit Autor und Datum |
 
-**Fotos.** Der Hero nutzt zwei Motive: auf Bildschirmen bis 820 Pixel Breite das Matcha-Ube-Foto
-aus dem Facebook-Beitrag vom 19.08.2026 (1440 x 1630 Pixel), auf größeren Bildschirmen die
-Kaffee-Aufnahme bei Google vom 10.01.2026 (im Original 3024 x 4032 Pixel). Das mobile Foto liegt
-ohne erneute Komprimierung vor; die drei Desktop-Größen wurden ausschließlich heruntergerechnet,
-nichts wurde hochskaliert. Es werden nur Bilder verwendet, die das Café selbst veröffentlicht hat,
-also Facebook-Beiträge und die vom Inhaber bei Google hochgeladenen Fotos. Gästefotos aus Google
-sind bewusst nicht dabei, weil die Rechte daran bei den Gästen liegen. KI-generierte Motive wurden
-ebenfalls aussortiert.
+**Fotos.** Die neun Getränkemotive im Hero sind hochwertige, menügetreue Freisteller realer
+CHAI-Kartenpositionen: „Strawberry Iced Ube“, „Schoko Iced Ube“, „Matcha Frappé“, „Oreo Frappé“,
+„Caramel Mochi“, „Blue Lagoon“, „Ananas Mojito“, „Mango Coconut Dream“ und „Berry Love“.
+Becherform, Deckel, Farbe, Schichtung, Garnitur und Branding wurden an den jeweiligen realen
+Menütafeln und Produktfotos ausgerichtet. Die sichtbaren Namen entsprechen der realen CHAI-Karte;
+es wird keine nicht angebotene Getränkeposition erfunden. Jede Szene verwendet eigene
+Zutatenfreisteller ohne wiederholte Bilddatei. Quellen, Prompts und Verarbeitung sind in
+`assets/generated/hero-animation-source/product-restoration-prompts.md` dokumentiert.
 
 **Technik.**
 
@@ -84,8 +84,8 @@ ebenfalls aussortiert.
   auf schmalen Bildschirmen bleiben die Richtungen trotz einspaltiger Anordnung erhalten
 - Die Google-Rezensionen laufen als nahtlose, ziehbare Linie; Hover, Fokus und eine sichtbare
   Schaltfläche pausieren sie, Pfeiltasten bewegen sie und reduzierte Bewegung schaltet den Lauf ab
-- Vollbild-Hero mit art-directed `<picture>`: Matcha-Ube auf schmalen Bildschirmen bis 820 Pixel,
-  Kaffee auf größeren Bildschirmen mit drei Größen über `srcset`
+- Vollbild-Hero mit neun automatisch wechselnden echten Getränkemotiven; die sichtbaren
+  Produktsilhouetten sind trotz unterschiedlicher Ausgangsformate optisch gleich gewichtet
 - Kein Cookie, kein Tracking, kein eingebundener Dienst von Dritten
 - Schriften liegen auf dem eigenen Server, es geht keine IP an Google Fonts
 - Google Maps ist nur verlinkt, nicht eingebettet, also kein Consent-Banner nötig
@@ -113,8 +113,9 @@ Ohne diese Angaben darf die Seite in Deutschland nicht online gehen.
 
 ### 2. Fehlende Preise
 
-Vollständig vorhanden sind Ube, Frucht-Mix, Dirty Soda und Crêpes. Es fehlen die Preise für
-Kaffee, Tee, Matcha, Croffles, Kuchen und türkische Süßigkeiten. In der Karte steht dort aktuell
+Vollständig vorhanden sind Ube, Frucht-Mix, Dirty Soda und Crêpes; für Matcha Frappé und Oreo
+Frappé sind die Preise ebenfalls belegt. Es fehlen die Preise für weitere Kaffee-, Tee- und Matcha-Positionen,
+Croffles, Kuchen und türkische Süßigkeiten. In der Karte steht dort aktuell
 ein Hinweis auf die Tafel im Laden. Sobald die Preise da sind, in `speisekarte.html` ergänzen:
 
 ```html
