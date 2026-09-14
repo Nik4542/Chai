@@ -310,6 +310,65 @@
   }
 
 
+  /* ---- Favoriten-Karussell auf der Speisekarte ----
+     Das Scrollen selbst ist nativ mit Einrasten, damit es auf dem Handy
+     direkt dem Finger folgt. Die Pfeile springen um ganze Karten. Ein Klick
+     auf eine Karte fuehrt zur Position in der Karte und hebt einen aktiven
+     Filter auf, falls die Position gerade ausgeblendet ist. */
+  var favTrack = document.querySelector("[data-favs-track]");
+  var favNav = document.querySelector("[data-favs-nav]");
+
+  if (favTrack) {
+    var favPrev = favNav && favNav.querySelector('[data-favs-step="-1"]');
+    var favNext = favNav && favNav.querySelector('[data-favs-step="1"]');
+    var favFrame = 0;
+
+    function favStep() {
+      var card = favTrack.querySelector(".fav-card");
+      if (!card) return favTrack.clientWidth;
+      var gap = parseFloat(window.getComputedStyle(favTrack).columnGap) || 0;
+      var per = card.getBoundingClientRect().width + gap;
+      return Math.max(1, Math.floor((favTrack.clientWidth * 0.8) / per)) * per;
+    }
+
+    function updateFavButtons() {
+      favFrame = 0;
+      if (!favPrev || !favNext) return;
+      var max = favTrack.scrollWidth - favTrack.clientWidth;
+      favPrev.disabled = favTrack.scrollLeft <= 2;
+      favNext.disabled = favTrack.scrollLeft >= max - 2;
+      favNav.hidden = max <= 2;
+    }
+
+    function queueFavButtons() {
+      if (!favFrame) favFrame = window.requestAnimationFrame(updateFavButtons);
+    }
+
+    if (favNav) {
+      Array.prototype.forEach.call(favNav.querySelectorAll("[data-favs-step]"), function (button) {
+        button.addEventListener("click", function () {
+          favTrack.scrollBy({
+            left: Number(button.getAttribute("data-favs-step")) * favStep(),
+            behavior: reduced ? "auto" : "smooth"
+          });
+        });
+      });
+      favTrack.addEventListener("scroll", queueFavButtons, { passive: true });
+      window.addEventListener("resize", queueFavButtons);
+      updateFavButtons();
+    }
+
+    favTrack.addEventListener("click", function (event) {
+      var link = event.target.closest('a[href^="#karte-"]');
+      if (!link || !chips.length) return;
+      var target = document.getElementById(link.getAttribute("href").slice(1));
+      if (!target || target.style.display !== "none") return;
+      chips.forEach(function (c) {
+        if (c.getAttribute("data-filter") === "alle") c.click();
+      });
+    });
+  }
+
   /* ---- Betriebsstatus aus den Oeffnungszeiten ----
      Gerechnet wird immer in der Zeitzone des Cafes, nicht in der des Besuchers.
      Montag bis Samstag 09:00 bis 19:00, Sonntag geschlossen. */

@@ -12,7 +12,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/marcellus-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/karla-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=20260914-1">
+<link rel="stylesheet" href="styles.css?v=20260914-6">
 </head>
 <body>
 
@@ -47,6 +47,121 @@
     <p>Alles wird frisch zubereitet. Hafermilch und Mandelmilch gibt es zu jedem Kaffee. Preise für Kaffee, Tee und Süßes stehen auf der Tafel im Laden.</p>
   </div>
 
+  <section class="favs" aria-labelledby="favs-title">
+    <div class="favs-head">
+      <div>
+        <p class="label">Beliebt bei unseren Gästen</p>
+        <h2 class="h-card favs-title" id="favs-title">Die Favoriten</h2>
+      </div>
+      <div class="favs-nav" data-favs-nav hidden>
+        <button class="favs-btn favs-btn--prev" type="button" data-favs-step="-1" aria-label="Vorherige Favoriten"><span aria-hidden="true"></span></button>
+        <button class="favs-btn favs-btn--next" type="button" data-favs-step="1" aria-label="Nächste Favoriten"><span aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <ul class="favs-track" data-favs-track>
+        <li class="fav-card">
+          <a href="#karte-strawberry-iced-ube">
+            <span class="fav-media fav-media--cutout tone-berry"><img src="assets/img/hero-animation/strawberry-iced-ube-real-v2.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Ube</span>
+              <span class="fav-name">Strawberry Iced Ube</span>
+              <span class="fav-meta"><span>Erdbeere trifft Ube</span><b>5,50 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-matcha-frappe">
+            <span class="fav-media fav-media--cutout tone-matcha"><img src="assets/img/hero-animation/matcha-frappe-real-v2.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Kaffee und Matcha</span>
+              <span class="fav-name">Matcha Frappé</span>
+              <span class="fav-meta"><span>Matcha, Milch, Eis</span><b>5,40 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-erdbeere-schoko">
+            <span class="fav-media"><img src="assets/img/karte-crepe-erdbeere.jpg" width="720" height="900" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Crêpes</span>
+              <span class="fav-name">Erdbeere und Schoko</span>
+              <span class="fav-meta"><span>Crêpe Spezial</span><b>5,45 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-schoko-iced-ube">
+            <span class="fav-media fav-media--cutout tone-schoko"><img src="assets/img/hero-animation/schoko-iced-ube-real-v1.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Ube</span>
+              <span class="fav-name">Schoko Iced Ube</span>
+              <span class="fav-meta"><span>Mit Schokoladensauce</span><b>5,30 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-mango-coconut-dream">
+            <span class="fav-media fav-media--cutout tone-mango"><img src="assets/img/hero-animation/mango-coconut-dream-real-v1.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Frucht-Mix</span>
+              <span class="fav-name">Mango Coconut Dream</span>
+              <span class="fav-meta"><span>Mango, Kokos, Banane</span><b>5,60 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-oreo-frappe">
+            <span class="fav-media fav-media--cutout tone-oreo"><img src="assets/img/hero-animation/oreo-frappe-real-v1.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Kaffee und Matcha</span>
+              <span class="fav-name">Oreo Frappé</span>
+              <span class="fav-meta"><span>Oreo Kekse, Milch, Vanille</span><b>5,30 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-nutella-banane">
+            <span class="fav-media"><img src="assets/img/karte-crepe-banane.jpg" width="720" height="900" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Crêpes</span>
+              <span class="fav-name">Nutella und Banane</span>
+              <span class="fav-meta"><span>Crêpe Spezial</span><b>5,45 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-berry-love">
+            <span class="fav-media fav-media--cutout tone-berry-love"><img src="assets/img/hero-animation/berry-love-real-v1.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Frucht-Mix</span>
+              <span class="fav-name">Berry Love</span>
+              <span class="fav-meta"><span>Erdbeere und Kirsche</span><b>4,95 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-ananas-mojito">
+            <span class="fav-media fav-media--cutout tone-ananas"><img src="assets/img/hero-animation/ananas-mojito-real-v2.webp" width="900" height="1350" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Virgin Mojitos</span>
+              <span class="fav-name">Ananas Mojito</span>
+              <span class="fav-meta"><span>Ananas, Minze, Limette</span><b>4,60 €</b></span>
+            </span>
+          </a>
+        </li>
+        <li class="fav-card">
+          <a href="#karte-tuerkische-suessigkeiten">
+            <span class="fav-media"><img src="assets/img/karte-tuerkisch.jpg" width="720" height="900" alt="" loading="lazy" decoding="async"></span>
+            <span class="fav-info">
+              <span class="fav-cat">Süßes</span>
+              <span class="fav-name">Türkische Süßigkeiten</span>
+              <span class="fav-meta"><span>Baklava, Lokum, Pistazien</span></span>
+            </span>
+          </a>
+        </li>
+    </ul>
+  </section>
+
   <div class="karte-body">
     <div class="chips" role="group" aria-label="Speisekarte nach Kategorie filtern">
       <button class="chip" type="button" aria-pressed="true"  data-filter="alle">Alle</button>
@@ -65,29 +180,25 @@
 
 
       <!-- UBE -->
-      <div class="cat-head" data-cat="ube"><div><h3>Ube</h3><p>Die violette Süßkartoffel von den Philippinen. Kalt und heiß.</p></div></div>
+      <div class="cat-head" data-cat="ube"><figure class="cat-media"><img src="assets/img/karte-ube.jpg" width="960" height="600" alt="Ube Getränk im CHAI Becher vor der Ube Menütafel" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Ube</h3><p>Die violette Süßkartoffel von den Philippinen. Kalt und heiß.</p></div></div>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Ube Iced Latte</h3><span class="price">5,90 €</span></div><p>Ube und Milch auf Eis</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Ube Iced Milch</h3><span class="price">5,40 €</span></div><p>Pur und cremig, ohne Kaffee</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Ube Shake</h3><span class="price">5,60 €</span></div><p>Geshaked, mit Sahnehaube</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Ube Coconut Shake</h3><span class="price">5,90 €</span></div><p>Ube und Kokos</p></article>
-      <article class="item" data-cat="ube"><div class="item-top"><h3>Strawberry Iced Ube</h3><span class="price">5,50 €</span></div><p>Erdbeere trifft Ube</p></article>
-      <article class="item" data-cat="ube"><div class="item-top"><h3>Schoko Iced Ube</h3><span class="price">5,30 €</span></div><p>Mit Schokoladensauce</p></article>
+      <article class="item" id="karte-strawberry-iced-ube" data-cat="ube"><div class="item-top"><h3>Strawberry Iced Ube</h3><span class="price">5,50 €</span></div><p>Erdbeere trifft Ube</p></article>
+      <article class="item" id="karte-schoko-iced-ube" data-cat="ube"><div class="item-top"><h3>Schoko Iced Ube</h3><span class="price">5,30 €</span></div><p>Mit Schokoladensauce</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Matcha Ube Latte</h3><span class="price">5,90 €</span></div><p>Matcha und Ube in einem Becher</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Ube Latte, heiß</h3><span class="price">5,10 €</span></div><p>Mit Latte Art</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Matcha Ube, heiß</h3><span class="price">5,80 €</span></div><p>Warm serviert</p></article>
       <article class="item" data-cat="ube"><div class="item-top"><h3>Hot Schoko Ube</h3><span class="price">4,90 €</span></div><p>Heiße Schokolade mit Ube</p></article>
 
       <!-- MOCHI -->
-      <div class="cat-head" data-cat="mochi"><div><h3>Winter Mochi</h3><p>Cremige Getränkespezialitäten im 0,4 Liter Becher.</p></div></div>
+      <div class="cat-head" data-cat="mochi"><figure class="cat-media cat-media--cutout tone-caramel"><img src="assets/img/hero-animation/caramel-mochi-real-v1.webp" width="900" height="1350" alt="Caramel Mochi im CHAI Becher" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Winter Mochi</h3><p>Cremige Getränkespezialitäten im 0,4 Liter Becher.</p></div></div>
       <article class="item" data-cat="mochi"><div class="item-top"><h3>Caramel Mochi</h3><span class="price">5,25 €</span></div><p>Aus der Winter Mochi Collection</p></article>
 
       <!-- FRUCHT-MIX -->
-      <figure class="item item-foto" data-cat="ube">
-        <img src="assets/img/cat-ube.jpg" width="600" height="320" alt="Ube Getränk vor der Ube Menütafel im Café" loading="lazy" decoding="async">
-        <figcaption>Strawberry Iced Ube, direkt an der Theke</figcaption>
-      </figure>
-      <div class="cat-head" data-cat="frucht"><div><h3>Frucht-Mix</h3><p>100 % natürliche Zutaten, ohne Zuckerzusatz, mit gefrorenen Früchten.</p></div></div>
-      <article class="item" data-cat="frucht"><div class="item-top"><h3>Mango Coconut Dream</h3><span class="price">5,60 €</span></div><p>Mango, Kokos, Banane</p></article>
+      <div class="cat-head" data-cat="frucht"><figure class="cat-media"><img src="assets/img/karte-frucht.jpg" width="960" height="600" alt="Frucht-Mix im CHAI Becher vor der Frucht-Mix Tafel" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Frucht-Mix</h3><p>100 % natürliche Zutaten, ohne Zuckerzusatz, mit gefrorenen Früchten.</p></div></div>
+      <article class="item" id="karte-mango-coconut-dream" data-cat="frucht"><div class="item-top"><h3>Mango Coconut Dream</h3><span class="price">5,60 €</span></div><p>Mango, Kokos, Banane</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Green Detox</h3><span class="price">5,25 €</span></div><p>Spinat, Ananas, Apfel, Banane</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Strawberry Matcha Fusion</h3><span class="price">5,30 €</span></div><p>Erdbeere, Banane, Matcha</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Raspberry Vanilla Cream</h3><span class="price">4,95 €</span></div><p>Himbeere, Vanille, Banane</p></article>
@@ -96,14 +207,10 @@
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Avocado Spinach Smooth</h3><span class="price">5,60 €</span></div><p>Avocado, Spinat, Banane, Apfel</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Strawberry Cheesecake</h3><span class="price">4,95 €</span></div><p>Erdbeere, Vanille, Keks</p></article>
       <article class="item" data-cat="frucht"><div class="item-top"><h3>Chocolate Berry Delight</h3><span class="price">4,95 €</span></div><p>Schokolade, Beerenmix, Banane</p></article>
-      <article class="item" data-cat="frucht"><div class="item-top"><h3>Berry Love</h3><span class="price">4,95 €</span></div><p>Gefrorene Erdbeere und Kirsche</p></article>
+      <article class="item" id="karte-berry-love" data-cat="frucht"><div class="item-top"><h3>Berry Love</h3><span class="price">4,95 €</span></div><p>Gefrorene Erdbeere und Kirsche</p></article>
 
       <!-- DIRTY SODA -->
-      <figure class="item item-foto" data-cat="frucht">
-        <img src="assets/img/cat-frucht.jpg" width="600" height="320" alt="Zwei Frucht-Mix Becher mit CHAI Aufkleber" loading="lazy" decoding="async">
-        <figcaption>Frisch gemixt, ohne Zuckerzusatz</figcaption>
-      </figure>
-      <div class="cat-head" data-cat="soda"><div><h3>Dirty Soda</h3><p>Sprudel trifft Kokoscreme. Zehn Sorten, alle frisch gemischt.</p></div></div>
+      <div class="cat-head" data-cat="soda"><figure class="cat-media cat-media--cutout tone-lagoon"><img src="assets/img/hero-animation/blue-lagoon-real-v1.webp" width="900" height="1350" alt="Blue Lagoon Dirty Soda im CHAI Becher" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Dirty Soda</h3><p>Sprudel trifft Kokoscreme. Zehn Sorten, alle frisch gemischt.</p></div></div>
       <article class="item" data-cat="soda"><div class="item-top"><h3>Blue Lagoon</h3><span class="price">5,45 €</span></div><p>Sprite, Blaubeere, Blue Curaçao, Kokoscreme</p></article>
       <article class="item" data-cat="soda"><div class="item-top"><h3>Raspberry Cream Sprite</h3><span class="price">5,45 €</span></div><p>Sprite, Himbeere, Zitrone, Kokoscreme</p></article>
       <article class="item" data-cat="soda"><div class="item-top"><h3>Cherry Cola Cream</h3><span class="price">5,30 €</span></div><p>Coca-Cola, Kirsche, Kokoscreme</p></article>
@@ -116,34 +223,26 @@
       <article class="item" data-cat="soda"><div class="item-top"><h3>Dirty Mezzo Berry</h3><span class="price">5,30 €</span></div><p>Mezzo Mix, Himbeere, Blaubeere, Kokoscreme</p></article>
 
       <!-- VIRGIN MOJITOS -->
-      <div class="cat-head" data-cat="mojito"><div><h3>Virgin Mojitos</h3><p>Alkoholfrei und frisch auf Eis zubereitet.</p></div></div>
-      <article class="item" data-cat="mojito"><div class="item-top"><h3>Ananas Mojito</h3><span class="price">4,60 €</span></div><p>Ananassaft, Minze, Limette, Soda</p></article>
+      <div class="cat-head" data-cat="mojito"><figure class="cat-media"><img src="assets/img/karte-mojito.jpg" width="960" height="600" alt="Vier Getränke mit Minze und Limette im CHAI Becher" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Virgin Mojitos</h3><p>Alkoholfrei und frisch auf Eis zubereitet.</p></div></div>
+      <article class="item" id="karte-ananas-mojito" data-cat="mojito"><div class="item-top"><h3>Ananas Mojito</h3><span class="price">4,60 €</span></div><p>Ananassaft, Minze, Limette, Soda</p></article>
 
       <!-- CRÊPES -->
-      <figure class="item item-foto" data-cat="soda">
-        <img src="assets/img/cat-soda.jpg" width="600" height="320" alt="Drei Dirty Sodas in Bechern auf dem Holztisch" loading="lazy" decoding="async">
-        <figcaption>Sprudel trifft Kokoscreme</figcaption>
-      </figure>
-      <div class="cat-head" data-cat="crepes"><div><h3>Crêpes</h3><p>Frisch gemacht. Extras: Banane oder Erdbeeren 0,50 €, mehr Schoko oder Lotus 0,70 €.</p></div></div>
+      <div class="cat-head" data-cat="crepes"><figure class="cat-media"><img src="assets/img/karte-crepes.jpg" width="960" height="600" alt="Crêpe mit Karamell- und Schokosauce und Erdbeeren" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Crêpes</h3><p>Frisch gemacht. Extras: Banane oder Erdbeeren 0,50 €, mehr Schoko oder Lotus 0,70 €.</p></div></div>
       <article class="item" data-cat="crepes"><div class="item-top"><h3>Zimt und Zucker</h3><span class="price">3,45 €</span></div><p>Der Klassiker</p></article>
       <article class="item" data-cat="crepes"><div class="item-top"><h3>Zucker und Zitrone</h3><span class="price">3,45 €</span></div><p>Frisch und leicht</p></article>
       <article class="item" data-cat="crepes"><div class="item-top"><h3>Nutella Crêpe</h3><span class="price">4,45 €</span></div><p>Mit Nutella</p></article>
-      <article class="item" data-cat="crepes"><div class="item-top"><h3>Nutella und Banane</h3><span class="price">5,45 €</span></div><p>Crêpe Spezial</p></article>
-      <article class="item" data-cat="crepes"><div class="item-top"><h3>Erdbeere und Schoko</h3><span class="price">5,45 €</span></div><p>Crêpe Spezial</p></article>
+      <article class="item" id="karte-nutella-banane" data-cat="crepes"><div class="item-top"><h3>Nutella und Banane</h3><span class="price">5,45 €</span></div><p>Crêpe Spezial</p></article>
+      <article class="item" id="karte-erdbeere-schoko" data-cat="crepes"><div class="item-top"><h3>Erdbeere und Schoko</h3><span class="price">5,45 €</span></div><p>Crêpe Spezial</p></article>
       <article class="item" data-cat="crepes"><div class="item-top"><h3>Lotus Biscoff</h3><span class="price">5,45 €</span></div><p>Mit Lotus Creme und Keks</p></article>
       <article class="item" data-cat="crepes"><div class="item-top"><h3>Dubai Crêpe</h3><span class="price">5,95 €</span></div><p>Nutella, Pistazien und Biscoff</p></article>
       <article class="item" data-cat="crepes"><div class="item-top"><h3>Kids-Special</h3><span class="price">5,40 €</span></div><p>Montag bis Freitag: Nutella Crêpe und ein Cold Drink</p></article>
 
       <!-- KAFFEE UND MATCHA -->
-      <figure class="item item-foto" data-cat="crepes">
-        <img src="assets/img/cat-crepes.jpg" width="600" height="320" alt="Crêpe mit Pistaziencreme auf dem Teller" loading="lazy" decoding="async">
-        <figcaption>Dubai Crêpe mit Pistazien und Biscoff</figcaption>
-      </figure>
-      <div class="cat-head" data-cat="kaffee"><div><h3>Kaffee und Matcha</h3><p>Hafer- und Mandelmilch möglich. Preise für die Klassiker stehen auf der Tafel im Laden.</p></div></div>
+      <div class="cat-head" data-cat="kaffee"><figure class="cat-media"><img src="assets/img/karte-kaffee.jpg" width="960" height="600" alt="Latte Macchiato, Cappuccino und Croffle auf dem Holztisch" loading="lazy" decoding="async" style="object-position:center 40%"></figure><div class="cat-text"><h3>Kaffee und Matcha</h3><p>Hafer- und Mandelmilch möglich. Preise für die Klassiker stehen auf der Tafel im Laden.</p></div></div>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Caramel Iced Latte</h3><span class="price">4,95 €</span></div><p>Espresso, Milch, Karamell, Eis</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Pistazien Eis Latte</h3><span class="price">5,10 €</span></div><p>Espresso, Milch, Pistaziencreme</p></article>
-      <article class="item" data-cat="kaffee"><div class="item-top"><h3>Matcha Frappé</h3><span class="price">5,40 €</span></div><p>Matcha, Milch, Eis</p></article>
-      <article class="item" data-cat="kaffee"><div class="item-top"><h3>Oreo Frappé</h3><span class="price">5,30 €</span></div><p>Oreo Kekse, Milch, Vanille, Eis</p></article>
+      <article class="item" id="karte-matcha-frappe" data-cat="kaffee"><div class="item-top"><h3>Matcha Frappé</h3><span class="price">5,40 €</span></div><p>Matcha, Milch, Eis</p></article>
+      <article class="item" id="karte-oreo-frappe" data-cat="kaffee"><div class="item-top"><h3>Oreo Frappé</h3><span class="price">5,30 €</span></div><p>Oreo Kekse, Milch, Vanille, Eis</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Matcha Latte</h3></div><p>Heiß oder auf Eis, auch mit Pistaziencreme</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Espresso und Americano</h3></div><p>Aus der Siebträgermaschine</p></article>
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Cappuccino und Cortado</h3></div><p>Klassisch, mit Latte Art</p></article>
@@ -154,20 +253,12 @@
       <article class="item" data-cat="kaffee"><div class="item-top"><h3>Chai Tea Collection</h3></div><p>Klassische Teesorten und Iced Tea</p></article>
 
       <!-- SÜSSES -->
-      <figure class="item item-foto" data-cat="kaffee">
-        <img src="assets/img/cat-kaffee.jpg" width="600" height="320" alt="Matcha Latte im CHAI Becher" loading="lazy" decoding="async">
-        <figcaption>Matcha wird bei uns aufgeschlagen</figcaption>
-      </figure>
-      <div class="cat-head" data-cat="suess"><div><h3>Süßes</h3><p>Wechselndes Angebot in der Vitrine. Preise stehen an der Theke.</p></div></div>
+      <div class="cat-head" data-cat="suess"><figure class="cat-media"><img src="assets/img/karte-suess.jpg" width="960" height="600" alt="Teller mit Pistazien-Lokum und Nuss-Süßigkeiten" loading="lazy" decoding="async"></figure><div class="cat-text"><h3>Süßes</h3><p>Wechselndes Angebot in der Vitrine. Preise stehen an der Theke.</p></div></div>
       <article class="item" data-cat="suess"><div class="item-top"><h3>Croffles</h3></div><p>Waffel aus Croissant-Teig, täglich frisch gebacken</p></article>
-      <article class="item" data-cat="suess"><div class="item-top"><h3>Türkische Süßigkeiten</h3></div><p>Baklava, Lokum und türkischer Honig mit Pistazien</p></article>
+      <article class="item" id="karte-tuerkische-suessigkeiten" data-cat="suess"><div class="item-top"><h3>Türkische Süßigkeiten</h3></div><p>Baklava, Lokum und türkischer Honig mit Pistazien</p></article>
       <article class="item" data-cat="suess"><div class="item-top"><h3>Kuchen</h3></div><p>Hausgebacken, zum Beispiel Orangenkuchen oder Schokoladenkuchen mit Pistazien</p></article>
       <article class="item" data-cat="suess"><div class="item-top"><h3>Cheesecake</h3></div><p>Wechselnde Sorten aus der Vitrine</p></article>
       <article class="item" data-cat="suess"><div class="item-top"><h3>Belgische Schokolade</h3></div><p>Zum Mitnehmen</p></article>
-      <figure class="item item-foto" data-cat="suess">
-        <img src="assets/img/cat-suess.jpg" width="600" height="320" alt="Teller mit türkischen Süßigkeiten und Pistazien" loading="lazy" decoding="async">
-        <figcaption>Türkische Süßigkeiten aus der Vitrine</figcaption>
-      </figure>
     </div>
 
     <ul class="badges">
@@ -235,6 +326,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=20260908-1" defer></script>
+<script src="main.js?v=20260914-3" defer></script>
 </body>
 </html>
