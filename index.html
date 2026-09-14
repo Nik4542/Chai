@@ -20,9 +20,9 @@
 
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/marcellus-400-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/karla-400-latin.woff2" crossorigin>
-<link rel="preload" as="image" type="image/webp" href="assets/img/hero-animation/strawberry-ube.webp">
+<link rel="preload" as="image" type="image/webp" href="assets/img/hero-animation/strawberry-iced-ube-real-v2.webp">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=20260912-1">
+<link rel="stylesheet" href="styles.css?v=20260914-1">
 </head>
 <body>
 
@@ -55,10 +55,18 @@
   <!-- ===== 1 · Automatisch wechselnde CHAI-Getraenke ===== -->
   <section class="hero hero-showcase on-dark" aria-labelledby="hero-title">
     <h1 class="visually-hidden" id="hero-title">CHAI Getränkespezialitäten in Oldenburg</h1>
+    <p class="visually-hidden">Im Wechsel: Strawberry Iced Ube, Schoko Iced Ube, Matcha Frappé, Oreo Frappé, Caramel Mochi, Blue Lagoon, Ananas Mojito, Mango Coconut Dream und Berry Love.</p>
 
     <div class="hero-stage" data-hero-stage>
       <div class="hero-palette hero-palette--berry" style="--hero-delay:-1.2s" aria-hidden="true"></div>
-      <div class="hero-palette hero-palette--matcha" style="--hero-delay:-6.8s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--schoko" style="--hero-delay:4.4s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--matcha" style="--hero-delay:10s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--oreo" style="--hero-delay:15.6s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--caramel" style="--hero-delay:21.2s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--lagoon" style="--hero-delay:26.8s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--ananas" style="--hero-delay:32.4s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--mango" style="--hero-delay:38s" aria-hidden="true"></div>
+      <div class="hero-palette hero-palette--berry-love" style="--hero-delay:43.6s" aria-hidden="true"></div>
 
       <div class="hero-drink-scene hero-drink-scene--berry" style="--hero-delay:-1.2s" aria-hidden="true">
         <div class="hero-ingredients hero-ingredients--berry">
@@ -71,25 +79,151 @@
           <img class="hero-ingredient hero-ingredient--ube-wedge" src="assets/img/hero-animation/ube-wedge-v3.png" alt="" width="400" height="288" decoding="async" style="--desktop-x:238px;--desktop-y:74px;--desktop-size:122px;--mobile-x:33vw;--mobile-y:7vh;--mobile-size:84px;--r:15deg;--s:1;--lag:.14s">
           <img class="hero-ingredient hero-ingredient--berry-wedge" src="assets/img/hero-animation/strawberry-wedge-v2.png" alt="" width="320" height="365" decoding="async" style="--desktop-x:172px;--desktop-y:205px;--desktop-size:108px;--mobile-x:24vw;--mobile-y:20vh;--mobile-size:76px;--r:-21deg;--s:1;--lag:.06s">
         </div>
-        <img class="hero-product hero-product--berry"
-             src="assets/img/hero-animation/strawberry-ube.webp"
-             width="900" height="1350" alt=""
-             fetchpriority="high" decoding="async">
+        <figure class="hero-product-lockup">
+          <!-- Reale Kartenposition; menügetreu restauriert aus CHAI-Foto vom 06.08.2026. -->
+          <img class="hero-product hero-product--berry"
+               src="assets/img/hero-animation/strawberry-iced-ube-real-v2.webp"
+               width="900" height="1350" alt=""
+               fetchpriority="high" decoding="async">
+          <figcaption class="hero-drink-name">Strawberry Iced Ube</figcaption>
+        </figure>
       </div>
 
-      <div class="hero-drink-scene hero-drink-scene--matcha" style="--hero-delay:-6.8s" aria-hidden="true">
-        <div class="hero-ingredients hero-ingredients--matcha">
-          <img class="hero-ingredient hero-ingredient--matcha-cluster" src="assets/img/hero-animation/matcha-leaf.webp" alt="" width="560" height="373" decoding="async" style="--desktop-x:-248px;--desktop-y:-210px;--desktop-size:152px;--mobile-x:-27vw;--mobile-y:-21vh;--mobile-size:100px;--r:-14deg;--s:1;--lag:0s">
-          <img class="hero-ingredient hero-ingredient--matcha-buds" src="assets/img/hero-animation/matcha-buds-v3.png" alt="" width="360" height="344" decoding="async" style="--desktop-x:-305px;--desktop-y:-55px;--desktop-size:132px;--mobile-x:-39vw;--mobile-y:-4vh;--mobile-size:104px;--r:23deg;--s:1;--lag:.14s">
-          <img class="hero-ingredient hero-ingredient--matcha-burst" src="assets/img/hero-animation/matcha-powder-burst-v3.png" alt="" width="420" height="374" decoding="async" style="--desktop-x:-260px;--desktop-y:170px;--desktop-size:144px;--mobile-x:-34vw;--mobile-y:17vh;--mobile-size:96px;--r:-8deg;--s:1;--lag:.06s">
-          <img class="hero-ingredient hero-ingredient--matcha-sprig" src="assets/img/hero-animation/matcha-sprig-v2.png" alt="" width="360" height="273" decoding="async" style="--desktop-x:275px;--desktop-y:-185px;--desktop-size:138px;--mobile-x:41vw;--mobile-y:-15vh;--mobile-size:98px;--r:16deg;--s:1;--lag:.18s">
-          <img class="hero-ingredient hero-ingredient--matcha-dried" src="assets/img/hero-animation/matcha-dried-leaves-v3.png" alt="" width="440" height="265" decoding="async" style="--desktop-x:302px;--desktop-y:5px;--desktop-size:158px;--mobile-x:37vw;--mobile-y:3vh;--mobile-size:112px;--r:-21deg;--s:1;--lag:.1s">
-          <img class="hero-ingredient hero-ingredient--matcha-powder" src="assets/img/hero-animation/matcha-powder-v2.png" alt="" width="440" height="206" decoding="async" style="--desktop-x:240px;--desktop-y:205px;--desktop-size:136px;--mobile-x:30vw;--mobile-y:20vh;--mobile-size:94px;--r:10deg;--s:1;--lag:.2s">
+      <div class="hero-drink-scene hero-drink-scene--schoko" style="--hero-delay:4.4s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--schoko">
+          <img class="hero-ingredient hero-ingredient--schoko-root" src="assets/img/hero-animation/schoko-ube-root-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-240px;--desktop-y:-210px;--desktop-size:150px;--mobile-x:-32vw;--mobile-y:-20vh;--mobile-size:102px;--r:-31deg;--turn:-3deg;--s:1;--lag:0s">
+          <img class="hero-ingredient hero-ingredient--schoko-bar" src="assets/img/hero-animation/schoko-chocolate-bar-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:252px;--desktop-y:-178px;--desktop-size:138px;--mobile-x:32vw;--mobile-y:-17vh;--mobile-size:94px;--r:36deg;--turn:4deg;--s:1;--lag:.15s">
+          <img class="hero-ingredient hero-ingredient--schoko-coin" src="assets/img/hero-animation/schoko-ube-coin-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-300px;--desktop-y:-30px;--desktop-size:118px;--mobile-x:-40vw;--mobile-y:-3vh;--mobile-size:88px;--r:41deg;--turn:3deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient hero-ingredient--schoko-shards" src="assets/img/hero-animation/schoko-chocolate-shards-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:294px;--desktop-y:8px;--desktop-size:150px;--mobile-x:39vw;--mobile-y:1vh;--mobile-size:100px;--r:-22deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient hero-ingredient--schoko-ribbon" src="assets/img/hero-animation/schoko-chocolate-ribbon-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-170px;--desktop-y:210px;--desktop-size:142px;--mobile-x:-24vw;--mobile-y:20vh;--mobile-size:96px;--r:14deg;--turn:2deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient hero-ingredient--schoko-chunk" src="assets/img/hero-animation/schoko-ube-chunk-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:230px;--desktop-y:180px;--desktop-size:128px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:88px;--r:-12deg;--turn:-3deg;--s:1;--lag:.04s">
         </div>
-        <img class="hero-product hero-product--matcha"
-             src="assets/img/hero-animation/iced-matcha.webp"
-             width="900" height="1180" alt=""
-             decoding="async">
+        <figure class="hero-product-lockup">
+          <!-- Echte Kartenposition; menügetreu nach der CHAI Ube Tafel rekonstruiert. -->
+          <img class="hero-product hero-product--schoko"
+               src="assets/img/hero-animation/schoko-iced-ube-real-v1.webp"
+               width="900" height="1350" alt=""
+               decoding="async">
+          <figcaption class="hero-drink-name">Schoko Iced Ube</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--matcha" style="--hero-delay:10s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--matcha">
+          <img class="hero-ingredient hero-ingredient--matcha-cluster" src="assets/img/hero-animation/matcha-leaf.webp" alt="" width="560" height="373" decoding="async" style="--desktop-x:-248px;--desktop-y:-210px;--desktop-size:152px;--mobile-x:-27vw;--mobile-y:-21vh;--mobile-size:100px;--r:-42deg;--turn:-4deg;--s:1;--lag:0s">
+          <img class="hero-ingredient hero-ingredient--matcha-buds" src="assets/img/hero-animation/matcha-buds-v3.png" alt="" width="360" height="344" decoding="async" style="--desktop-x:-305px;--desktop-y:-55px;--desktop-size:132px;--mobile-x:-39vw;--mobile-y:-4vh;--mobile-size:104px;--r:44deg;--turn:4deg;--s:1;--lag:.14s">
+          <img class="hero-ingredient hero-ingredient--matcha-burst" src="assets/img/hero-animation/matcha-powder-burst-v3.png" alt="" width="420" height="374" decoding="async" style="--desktop-x:-260px;--desktop-y:170px;--desktop-size:144px;--mobile-x:-34vw;--mobile-y:17vh;--mobile-size:96px;--r:0deg;--turn:0deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient hero-ingredient--matcha-sprig" src="assets/img/hero-animation/matcha-sprig-v2.png" alt="" width="360" height="273" decoding="async" style="--desktop-x:275px;--desktop-y:-185px;--desktop-size:138px;--mobile-x:41vw;--mobile-y:-15vh;--mobile-size:98px;--r:38deg;--turn:4deg;--s:1;--lag:.18s">
+          <img class="hero-ingredient hero-ingredient--matcha-dried" src="assets/img/hero-animation/matcha-dried-leaves-v3.png" alt="" width="440" height="265" decoding="async" style="--desktop-x:302px;--desktop-y:5px;--desktop-size:158px;--mobile-x:37vw;--mobile-y:3vh;--mobile-size:112px;--r:-45deg;--turn:-4deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient hero-ingredient--matcha-powder" src="assets/img/hero-animation/matcha-powder-v2.png" alt="" width="440" height="206" decoding="async" style="--desktop-x:240px;--desktop-y:205px;--desktop-size:136px;--mobile-x:30vw;--mobile-y:20vh;--mobile-size:94px;--r:0deg;--turn:0deg;--s:1;--lag:.2s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Reale Kartenposition; menügetreu restauriert aus CHAI-Foto vom 21.06.2026. -->
+          <img class="hero-product hero-product--matcha"
+               src="assets/img/hero-animation/matcha-frappe-real-v2.webp"
+               width="900" height="1350" alt=""
+               decoding="async">
+          <figcaption class="hero-drink-name">Matcha Frappé</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--oreo" style="--hero-delay:15.6s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--oreo">
+          <img class="hero-ingredient hero-ingredient--oreo-whole" src="assets/img/hero-animation/oreo-whole-cookie-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-250px;--desktop-y:-220px;--desktop-size:130px;--mobile-x:-32vw;--mobile-y:-20vh;--mobile-size:90px;--r:-26deg;--turn:-3deg;--s:1;--lag:0s">
+          <img class="hero-ingredient hero-ingredient--oreo-milk" src="assets/img/hero-animation/oreo-cookie-milk-splash-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:240px;--desktop-y:-185px;--desktop-size:155px;--mobile-x:31vw;--mobile-y:-17vh;--mobile-size:104px;--r:22deg;--turn:3deg;--s:1;--lag:.16s">
+          <img class="hero-ingredient hero-ingredient--oreo-vanilla" src="assets/img/hero-animation/oreo-vanilla-pods-real-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-305px;--desktop-y:-25px;--desktop-size:145px;--mobile-x:-40vw;--mobile-y:-2vh;--mobile-size:96px;--r:42deg;--turn:4deg;--s:1;--lag:.07s">
+          <img class="hero-ingredient hero-ingredient--oreo-half" src="assets/img/hero-animation/oreo-half-cookie-real-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:300px;--desktop-y:25px;--desktop-size:132px;--mobile-x:39vw;--mobile-y:2vh;--mobile-size:88px;--r:-30deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient hero-ingredient--oreo-crumbs" src="assets/img/hero-animation/oreo-crumb-burst-real-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-150px;--desktop-y:220px;--desktop-size:135px;--mobile-x:-24vw;--mobile-y:21vh;--mobile-size:92px;--r:15deg;--turn:2deg;--s:1;--lag:.11s">
+          <img class="hero-ingredient hero-ingredient--oreo-ice" src="assets/img/hero-animation/oreo-ice-cluster-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:240px;--desktop-y:190px;--desktop-size:140px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:90px;--r:-10deg;--turn:-3deg;--s:1;--lag:.04s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Echte Kartenposition; menügetreu nach der CHAI Frappé Tafel rekonstruiert. -->
+          <img class="hero-product hero-product--oreo"
+               src="assets/img/hero-animation/oreo-frappe-real-v1.webp"
+               width="900" height="1350" alt=""
+               decoding="async">
+          <figcaption class="hero-drink-name">Oreo Frappé</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--caramel" style="--hero-delay:21.2s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--caramel">
+          <img class="hero-ingredient" src="assets/img/hero-animation/caramel-cubes-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-246px;--desktop-y:-204px;--desktop-size:142px;--mobile-x:-31vw;--mobile-y:-20vh;--mobile-size:96px;--r:-27deg;--turn:-4deg;--s:1;--lag:0s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/caramel-mochi-bitten-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:258px;--desktop-y:-184px;--desktop-size:132px;--mobile-x:34vw;--mobile-y:-18vh;--mobile-size:92px;--r:22deg;--turn:3deg;--s:1;--lag:.14s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/caramel-ribbon-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-298px;--desktop-y:-18px;--desktop-size:138px;--mobile-x:-39vw;--mobile-y:-1vh;--mobile-size:94px;--r:39deg;--turn:4deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/caramel-shards-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:292px;--desktop-y:28px;--desktop-size:146px;--mobile-x:39vw;--mobile-y:3vh;--mobile-size:98px;--r:-34deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/caramel-mochi-whole-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-166px;--desktop-y:214px;--desktop-size:126px;--mobile-x:-23vw;--mobile-y:20vh;--mobile-size:88px;--r:12deg;--turn:2deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/caramel-crumbs-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:232px;--desktop-y:186px;--desktop-size:144px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:96px;--r:-17deg;--turn:-3deg;--s:1;--lag:.04s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Reale Winter Mochi Position, nach der aktuellen CHAI Menütafel rekonstruiert. -->
+          <img class="hero-product hero-product--caramel" src="assets/img/hero-animation/caramel-mochi-real-v1.webp" width="900" height="1350" alt="" decoding="async">
+          <figcaption class="hero-drink-name">Caramel Mochi</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--lagoon" style="--hero-delay:26.8s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--lagoon">
+          <img class="hero-ingredient" src="assets/img/hero-animation/lagoon-blueberries-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-250px;--desktop-y:-214px;--desktop-size:144px;--mobile-x:-32vw;--mobile-y:-20vh;--mobile-size:98px;--r:-31deg;--turn:-4deg;--s:1;--lag:0s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/lagoon-coconut-half-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:262px;--desktop-y:-178px;--desktop-size:150px;--mobile-x:34vw;--mobile-y:-17vh;--mobile-size:100px;--r:26deg;--turn:4deg;--s:1;--lag:.15s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/lagoon-blue-splash-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-306px;--desktop-y:-16px;--desktop-size:156px;--mobile-x:-40vw;--mobile-y:-2vh;--mobile-size:104px;--r:42deg;--turn:3deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/lagoon-blueberry-single-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:302px;--desktop-y:30px;--desktop-size:106px;--mobile-x:39vw;--mobile-y:3vh;--mobile-size:78px;--r:-28deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/lagoon-coconut-cream-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-170px;--desktop-y:212px;--desktop-size:132px;--mobile-x:-24vw;--mobile-y:20vh;--mobile-size:90px;--r:13deg;--turn:2deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/lagoon-ice-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:232px;--desktop-y:186px;--desktop-size:144px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:96px;--r:-14deg;--turn:-3deg;--s:1;--lag:.04s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Reale Dirty Soda Position, nach der aktuellen CHAI Menütafel rekonstruiert. -->
+          <img class="hero-product hero-product--lagoon" src="assets/img/hero-animation/blue-lagoon-real-v1.webp" width="900" height="1350" alt="" decoding="async">
+          <figcaption class="hero-drink-name">Blue Lagoon</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--ananas" style="--hero-delay:32.4s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--ananas">
+          <img class="hero-ingredient" src="assets/img/hero-animation/ananas-wedge-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-246px;--desktop-y:-218px;--desktop-size:150px;--mobile-x:-32vw;--mobile-y:-21vh;--mobile-size:100px;--r:-36deg;--turn:-4deg;--s:1;--lag:0s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/ananas-mint-sprig-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:260px;--desktop-y:-180px;--desktop-size:142px;--mobile-x:34vw;--mobile-y:-17vh;--mobile-size:96px;--r:31deg;--turn:4deg;--s:1;--lag:.15s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/ananas-chunks-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-302px;--desktop-y:-20px;--desktop-size:136px;--mobile-x:-40vw;--mobile-y:-2vh;--mobile-size:94px;--r:39deg;--turn:3deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/ananas-lime-wedge-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:296px;--desktop-y:24px;--desktop-size:124px;--mobile-x:39vw;--mobile-y:2vh;--mobile-size:88px;--r:-42deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/ananas-mint-leaves-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-172px;--desktop-y:210px;--desktop-size:134px;--mobile-x:-24vw;--mobile-y:20vh;--mobile-size:92px;--r:17deg;--turn:2deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/ananas-ice-bubbles-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:236px;--desktop-y:190px;--desktop-size:146px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:98px;--r:-13deg;--turn:-3deg;--s:1;--lag:.04s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Reale Virgin Mojito Position, nach der aktuellen CHAI Menütafel rekonstruiert. -->
+          <img class="hero-product hero-product--ananas" src="assets/img/hero-animation/ananas-mojito-real-v2.webp" width="900" height="1350" alt="" decoding="async">
+          <figcaption class="hero-drink-name">Ananas Mojito</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--mango" style="--hero-delay:38s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--mango">
+          <img class="hero-ingredient" src="assets/img/hero-animation/mango-hedgehog-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-250px;--desktop-y:-212px;--desktop-size:152px;--mobile-x:-32vw;--mobile-y:-20vh;--mobile-size:102px;--r:-30deg;--turn:-4deg;--s:1;--lag:0s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/mango-coconut-wedge-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:264px;--desktop-y:-180px;--desktop-size:146px;--mobile-x:35vw;--mobile-y:-17vh;--mobile-size:98px;--r:24deg;--turn:4deg;--s:1;--lag:.15s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/mango-cubes-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-304px;--desktop-y:-18px;--desktop-size:142px;--mobile-x:-40vw;--mobile-y:-2vh;--mobile-size:96px;--r:41deg;--turn:3deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/mango-banana-slices-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:298px;--desktop-y:28px;--desktop-size:138px;--mobile-x:39vw;--mobile-y:3vh;--mobile-size:94px;--r:-35deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/mango-coconut-chips-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-168px;--desktop-y:212px;--desktop-size:138px;--mobile-x:-24vw;--mobile-y:20vh;--mobile-size:94px;--r:15deg;--turn:2deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/mango-puree-splash-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:234px;--desktop-y:186px;--desktop-size:150px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:100px;--r:-16deg;--turn:-3deg;--s:1;--lag:.04s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Reale Frucht Mix Position, nach der aktuellen CHAI Menütafel rekonstruiert. -->
+          <img class="hero-product hero-product--mango" src="assets/img/hero-animation/mango-coconut-dream-real-v1.webp" width="900" height="1350" alt="" decoding="async">
+          <figcaption class="hero-drink-name">Mango Coconut Dream</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-drink-scene hero-drink-scene--berry-love" style="--hero-delay:43.6s" aria-hidden="true">
+        <div class="hero-ingredients hero-ingredients--berry-love">
+          <img class="hero-ingredient" src="assets/img/hero-animation/berry-frozen-strawberries-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-248px;--desktop-y:-214px;--desktop-size:148px;--mobile-x:-32vw;--mobile-y:-20vh;--mobile-size:100px;--r:-32deg;--turn:-4deg;--s:1;--lag:0s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/berry-cherries-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:260px;--desktop-y:-184px;--desktop-size:138px;--mobile-x:34vw;--mobile-y:-18vh;--mobile-size:94px;--r:29deg;--turn:4deg;--s:1;--lag:.15s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/berry-strawberry-half-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-302px;--desktop-y:-20px;--desktop-size:128px;--mobile-x:-40vw;--mobile-y:-2vh;--mobile-size:90px;--r:43deg;--turn:3deg;--s:1;--lag:.06s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/berry-raspberries-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:298px;--desktop-y:26px;--desktop-size:144px;--mobile-x:39vw;--mobile-y:3vh;--mobile-size:98px;--r:-37deg;--turn:-4deg;--s:1;--lag:.2s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/berry-puree-splash-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:-170px;--desktop-y:214px;--desktop-size:150px;--mobile-x:-24vw;--mobile-y:20vh;--mobile-size:100px;--r:14deg;--turn:2deg;--s:1;--lag:.1s">
+          <img class="hero-ingredient" src="assets/img/hero-animation/berry-red-ice-v1.webp" alt="" width="520" height="520" decoding="async" style="--desktop-x:234px;--desktop-y:188px;--desktop-size:142px;--mobile-x:30vw;--mobile-y:18vh;--mobile-size:96px;--r:-15deg;--turn:-3deg;--s:1;--lag:.04s">
+        </div>
+        <figure class="hero-product-lockup">
+          <!-- Reale Frucht Mix 0,4 L Position, nach der aktuellen CHAI Menütafel rekonstruiert. -->
+          <img class="hero-product hero-product--berry-love" src="assets/img/hero-animation/berry-love-real-v1.webp" width="900" height="1350" alt="" decoding="async">
+          <figcaption class="hero-drink-name">Berry Love</figcaption>
+        </figure>
       </div>
     </div>
 
@@ -142,7 +276,7 @@
       <figure class="reveal">
         <img src="assets/img/menu-crepe.jpg" width="720" height="640"
              alt="Crêpe mit Pistaziencreme auf dem Teller" loading="lazy" decoding="async">
-        <h3 class="h-card">52 Positionen auf der Speisekarte</h3>
+        <h3 class="h-card">57 Positionen auf der Speisekarte</h3>
         <p>Ube, Matcha, Kaffee, Frucht-Mix, Dirty Soda, Crêpes, Croffles und türkische Süßigkeiten. Mit allen Preisen.</p>
         <a class="link-u" href="speisekarte.html">Ganze Speisekarte ansehen</a>
       </figure>
