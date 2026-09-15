@@ -100,14 +100,14 @@
       hero.classList.add("is-reduced-motion");
       showHero = function (step) { markHeroScene(sceneIndex - step, true); };
     } else {
-      var CYCLE_ANIMATIONS = { "hero-palette-cycle": true, "hero-product-sweep": true, "hero-ingredient-burst": true };
+      var CYCLE_ANIMATIONS = { "hero-palette-cycle": true, "hero-product-sweep": true, "hero-ingredient-burst": true, "hero-sparks-burst": true };
       var cycle = parseFloat(window.getComputedStyle(hero).getPropertyValue("--hero-cycle")) || 50.4;
       var slot = cycle / sceneCount;
       var firstDelay = parseFloat(heroScenes[0].style.getPropertyValue("--hero-delay")) || 0;
       /* Ruhefenster einer Szene in Sekunden, aus den Keyframes abgeleitet:
-         alle Zutaten stehen ab 3,11 % plus hoechstens 0,2 s Versatz,
+         alle Zutaten stehen ab 4 % plus hoechstens 0,3 s Versatz,
          die ersten fliegen ab 9,11 % wieder weg. */
-      var holdStart = cycle * 0.0311111 + 0.21;
+      var holdStart = cycle * 0.04 + 0.31;
       var holdEnd = cycle * 0.0911111;
       var holdSpan = holdEnd - holdStart;
       var stepSpan = slot - holdSpan;
@@ -277,96 +277,260 @@
     }
   }
 
-  /* ---- Karte filtern ---- */
+  /* ---- Karte filtern ----
+     Jede Kategorie ist ein eigener Abschnitt. Nach dem Filtern beginnt die
+     Liste direkt unter der klebenden Kategorie-Leiste. */
   var chips = Array.prototype.slice.call(document.querySelectorAll(".chip[data-filter]"));
   var grid = document.getElementById("karten-liste");
+  var chipBar = document.querySelector(".chips");
 
-  function markFirstHead() {
-    var heads = grid.querySelectorAll(".cat-head");
-    var found = false;
-    Array.prototype.forEach.call(heads, function (h) {
-      var visible = h.style.display !== "none";
-      h.classList.toggle("is-first", visible && !found);
-      if (visible) found = true;
+  function applyFilter(filter) {
+    Array.prototype.forEach.call(grid.children, function (block) {
+      var cat = block.getAttribute("data-cat");
+      block.style.display = (filter === "alle" || cat === filter) ? "" : "none";
     });
   }
 
-  function apply(filter) {
-    Array.prototype.forEach.call(grid.children, function (el) {
-      var cat = el.getAttribute("data-cat");
-      el.style.display = (filter === "alle" || cat === filter) ? "" : "none";
+  function showAllCategories() {
+    chips.forEach(function (c) {
+      if (c.getAttribute("data-filter") === "alle" && c.getAttribute("aria-pressed") !== "true") c.click();
     });
-    markFirstHead();
   }
 
   if (chips.length && grid) {
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
         chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
-        apply(chip.getAttribute("data-filter"));
+        applyFilter(chip.getAttribute("data-filter"));
+
+        var headH = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--head-h")) || 68;
+        var offset = headH + (chipBar ? chipBar.offsetHeight : 0);
+        var top = grid.getBoundingClientRect().top;
+        if (top < offset) {
+          window.scrollTo({ top: window.scrollY + top - offset + 1, behavior: reduced ? "auto" : "smooth" });
+        }
+        if (chipBar && (chip.offsetLeft < chipBar.scrollLeft || chip.offsetLeft + chip.offsetWidth > chipBar.scrollLeft + chipBar.clientWidth)) {
+          chipBar.scrollTo({ left: chip.offsetLeft - 20, behavior: reduced ? "auto" : "smooth" });
+        }
       });
     });
-    markFirstHead();
   }
 
-
-  /* ---- Favoriten-Karussell auf der Speisekarte ----
-     Das Scrollen selbst ist nativ mit Einrasten, damit es auf dem Handy
-     direkt dem Finger folgt. Die Pfeile springen um ganze Karten. Ein Klick
-     auf eine Karte fuehrt zur Position in der Karte und hebt einen aktiven
-     Filter auf, falls die Position gerade ausgeblendet ist. */
+  /* ---- Favoriten: endlose Linie auf der Speisekarte ----
+     Die Karten laufen langsam von selbst und ohne Ende. Maus, Finger,
+     Trackpad, Pfeile und Tastatur bewegen sie von Hand; Hover und Fokus
+     halten sie an. Bei reduzierter Bewegung bleibt die native, einrastende
+     Scrollreihe. Ein Klick auf eine Karte fuehrt zur Position in der Karte
+     und hebt einen Filter auf, der sie gerade ausblendet. */
+  var favRail = document.querySelector("[data-favs-rail]");
   var favTrack = document.querySelector("[data-favs-track]");
   var favNav = document.querySelector("[data-favs-nav]");
 
-  if (favTrack) {
-    var favPrev = favNav && favNav.querySelector('[data-favs-step="-1"]');
-    var favNext = favNav && favNav.querySelector('[data-favs-step="1"]');
-    var favFrame = 0;
+  if (favRail && favTrack && favTrack.children.length) {
+    var favCards = Array.prototype.slice.call(favTrack.children);
+    var favButtons = favNav ? Array.prototype.slice.call(favNav.querySelectorAll("[data-favs-step]")) : [];
 
-    function favStep() {
-      var card = favTrack.querySelector(".fav-card");
-      if (!card) return favTrack.clientWidth;
+    var favCardStep = function () {
       var gap = parseFloat(window.getComputedStyle(favTrack).columnGap) || 0;
-      var per = card.getBoundingClientRect().width + gap;
-      return Math.max(1, Math.floor((favTrack.clientWidth * 0.8) / per)) * per;
-    }
-
-    function updateFavButtons() {
-      favFrame = 0;
-      if (!favPrev || !favNext) return;
-      var max = favTrack.scrollWidth - favTrack.clientWidth;
-      favPrev.disabled = favTrack.scrollLeft <= 2;
-      favNext.disabled = favTrack.scrollLeft >= max - 2;
-      favNav.hidden = max <= 2;
-    }
-
-    function queueFavButtons() {
-      if (!favFrame) favFrame = window.requestAnimationFrame(updateFavButtons);
-    }
-
-    if (favNav) {
-      Array.prototype.forEach.call(favNav.querySelectorAll("[data-favs-step]"), function (button) {
-        button.addEventListener("click", function () {
-          favTrack.scrollBy({
-            left: Number(button.getAttribute("data-favs-step")) * favStep(),
-            behavior: reduced ? "auto" : "smooth"
-          });
-        });
-      });
-      favTrack.addEventListener("scroll", queueFavButtons, { passive: true });
-      window.addEventListener("resize", queueFavButtons);
-      updateFavButtons();
-    }
+      return favCards[0].offsetWidth + gap;
+    };
 
     favTrack.addEventListener("click", function (event) {
       var link = event.target.closest('a[href^="#karte-"]');
-      if (!link || !chips.length) return;
+      if (!link) return;
       var target = document.getElementById(link.getAttribute("href").slice(1));
-      if (!target || target.style.display !== "none") return;
-      chips.forEach(function (c) {
-        if (c.getAttribute("data-filter") === "alle") c.click();
-      });
+      var block = target && target.closest("[data-cat]");
+      if (block && block.style.display === "none") showAllCategories();
     });
+
+    if (reduced) {
+      favButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          favRail.scrollBy({ left: Number(button.getAttribute("data-favs-step")) * favCardStep(), behavior: "auto" });
+        });
+      });
+    } else {
+      var favDrift = 0.034;
+      var favSpan = 0;
+      var favPos = 0;
+      var favVel = 0;
+      var favTween = null;
+      var favHover = false;
+      var favFocus = false;
+      var favIdle = false;
+      var favIdleTimer = 0;
+      var favDrag = null;
+      var favDragX = 0;
+      var favDragStart = 0;
+      var favLastX = 0;
+      var favLastT = 0;
+      var favMoved = 0;
+      var favVisible = true;
+      var favLast = performance.now();
+
+      var favClone = function () {
+        favCards.forEach(function (card) {
+          var copy = card.cloneNode(true);
+          copy.setAttribute("aria-hidden", "true");
+          copy.inert = true;
+          Array.prototype.forEach.call(copy.querySelectorAll("a"), function (a) { a.tabIndex = -1; });
+          favTrack.appendChild(copy);
+        });
+      };
+      var favWrap = function () {
+        if (favSpan <= 0) return;
+        favPos %= favSpan;
+        if (favPos < 0) favPos += favSpan;
+      };
+      var favRender = function () {
+        favTrack.style.transform = "translate3d(" + (-favPos) + "px,0,0)";
+      };
+      var favMeasure = function () {
+        favSpan = favTrack.children[favCards.length].offsetLeft - favCards[0].offsetLeft;
+        /* Genug Kopien fuer eine volle Runde plus einen Sprung von Hand */
+        while (favSpan > 0 && favTrack.scrollWidth < favRail.clientWidth + favSpan * 2) favClone();
+        if (!favFocus && !favTween) favWrap();
+        favRender();
+      };
+      var favRest = function (ms) {
+        favIdle = true;
+        window.clearTimeout(favIdleTimer);
+        favIdleTimer = window.setTimeout(function () { favIdle = false; }, ms);
+      };
+      var favGo = function (to, duration) {
+        var from = favPos;
+        if (to < 0) { from += favSpan; to += favSpan; }
+        favTween = { from: from, to: to, start: performance.now(), duration: duration };
+        favVel = 0;
+      };
+      var favStepBy = function (dir) {
+        var step = favCardStep();
+        var base = favTween ? favTween.to : favPos;
+        favGo((Math.round(base / step) + dir) * step, 560);
+        favRest(2800);
+      };
+
+      var favFrame = function (now) {
+        window.requestAnimationFrame(favFrame);
+        var elapsed = Math.min(now - favLast, 50);
+        favLast = now;
+        if (!favVisible || document.hidden || favSpan <= 0 || favDrag !== null) return;
+
+        if (favTween) {
+          var k = Math.min(1, (now - favTween.start) / favTween.duration);
+          favPos = favTween.from + (favTween.to - favTween.from) * (1 - Math.pow(1 - k, 3));
+          if (k >= 1) favTween = null;
+        } else if (Math.abs(favVel) > 0.004) {
+          favPos += favVel * elapsed;
+          favVel *= Math.pow(0.93, elapsed / 16.667);
+        } else {
+          favVel = 0;
+          if (favHover || favFocus || favIdle) return;
+          favPos += favDrift * elapsed;
+        }
+        if (!favTween && !favFocus) favWrap();
+        favRender();
+      };
+
+      favRail.classList.add("is-active");
+      favClone();
+      favMeasure();
+      if ("ResizeObserver" in window) new ResizeObserver(favMeasure).observe(favRail);
+      else window.addEventListener("resize", favMeasure);
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          favVisible = entries[0].isIntersecting;
+          favLast = performance.now();
+        }).observe(favRail);
+      }
+      document.addEventListener("visibilitychange", function () { favLast = performance.now(); });
+      window.requestAnimationFrame(favFrame);
+
+      favButtons.forEach(function (button) {
+        button.addEventListener("click", function () { favStepBy(Number(button.getAttribute("data-favs-step"))); });
+      });
+
+      favRail.addEventListener("pointerenter", function (event) {
+        if (event.pointerType === "mouse") favHover = true;
+      });
+      favRail.addEventListener("pointerleave", function (event) {
+        if (event.pointerType === "mouse" && favDrag === null) favHover = false;
+      });
+      favRail.addEventListener("focusin", function (event) {
+        favFocus = true;
+        var card = event.target.closest(".fav-card");
+        if (!card) return;
+        var left = card.offsetLeft - favPos;
+        if (left < 0 || left + card.offsetWidth > favRail.clientWidth) {
+          favGo(card.offsetLeft - (favRail.clientWidth - card.offsetWidth) / 2, 420);
+        }
+      });
+      favRail.addEventListener("focusout", function (event) {
+        if (!favRail.contains(event.relatedTarget)) favFocus = false;
+      });
+      favRail.addEventListener("keydown", function (event) {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        favStepBy(event.key === "ArrowRight" ? 1 : -1);
+      });
+      favRail.addEventListener("wheel", function (event) {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+        event.preventDefault();
+        favTween = null;
+        favPos += event.deltaX;
+        favWrap();
+        favRender();
+        favRest(1400);
+      }, { passive: false });
+
+      favRail.addEventListener("pointerdown", function (event) {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        favDrag = event.pointerId;
+        favDragX = event.clientX;
+        favDragStart = favPos;
+        favLastX = event.clientX;
+        favLastT = event.timeStamp;
+        favVel = 0;
+        favMoved = 0;
+        favTween = null;
+      });
+      favRail.addEventListener("pointermove", function (event) {
+        if (event.pointerId !== favDrag) return;
+        var dx = event.clientX - favDragX;
+        favMoved = Math.max(favMoved, Math.abs(dx));
+        if (favMoved > 5 && favRail.dataset.dragging !== "true") {
+          favRail.dataset.dragging = "true";
+          if (favRail.setPointerCapture) favRail.setPointerCapture(event.pointerId);
+        }
+        if (favRail.dataset.dragging !== "true") return;
+        favPos = favDragStart - dx;
+        favWrap();
+        favRender();
+        var span = event.timeStamp - favLastT;
+        if (span > 0) favVel = -(event.clientX - favLastX) / span;
+        favLastX = event.clientX;
+        favLastT = event.timeStamp;
+      });
+      var favEndDrag = function (event) {
+        if (event.pointerId !== favDrag) return;
+        if (event.timeStamp - favLastT > 90) favVel = 0;
+        favDrag = null;
+        window.setTimeout(function () { delete favRail.dataset.dragging; }, 0);
+        if (event.pointerType !== "mouse") favRest(1600);
+      };
+      favRail.addEventListener("pointerup", favEndDrag);
+      favRail.addEventListener("pointercancel", favEndDrag);
+      /* Nach einem Ziehen ist das Loslassen kein Klick auf die Karte */
+      favRail.addEventListener("click", function (event) {
+        if (favMoved > 5) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        favMoved = 0;
+      }, true);
+      favRail.addEventListener("dragstart", function (event) { event.preventDefault(); });
+    }
   }
 
   /* ---- Betriebsstatus aus den Oeffnungszeiten ----
